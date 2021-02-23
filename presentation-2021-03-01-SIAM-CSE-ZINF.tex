@@ -102,6 +102,14 @@
 \titlegraphic{\includegraphics[scale=0.47]{figures/ZINF-CI-diagram.pdf}}
 \date{2021-03-01}
 
+\usepackage{booktabs}
+
+\hypersetup{
+  colorlinks,
+  citecolor=violet,
+  linkcolor=red,
+  urlcolor=violet}
+
 \begin{document}
 
 \maketitle
@@ -151,7 +159,6 @@
 
 \begin{frame}{A workflow for increasing the quality of (academic) CSE software} 
 
-	\vfill
 	The academic CSE software quality workflow: 
 	\begin{enumerate}
 		\item Track the issues in a Kanban board.
@@ -265,10 +272,10 @@
 	\begin{itemize}
 		\item Archive secondary data on a data repository (DOI). 
 		\item Archive primary data on a data repository (DOI). 
-		\item Create a git tag on the remote repository. 
+		\item Create a git tag on the remote git repository. 
 		\item Archive the source code, binaries and secondary data in a Singularity container (DOI). 
 		\item Refer to result data DOIs, the git repo and the tag in the publication.
-		\item Upload the publication to a repository (DOI, arXivID).
+		\item Upload the publication to a repository (DOI, arXiv-ID).
 			\begin{itemize}
 				\item For tech reports and milestones, DOIs can be requested without publication.
 			\end{itemize}
@@ -281,24 +288,62 @@
 	\framesubtitle{Schematic diagram}
 	
 	\begin{center}
-		\includegraphics[width=0.6\textwidth]{figures/cross-linking.pdf}
+		\includegraphics[width=0.57\textwidth]{figures/cross-linking.pdf}
 	\end{center}
 
 \end{frame}
 
+\begin{frame}{Similarity with published workflows / practices}
+
+	\vfill
+	Our \emph{(subjective)} estimates* of similarity $1-5$ (higher is more similar), $-$: aspect not addressed.
+	\begin{center}
+		\scriptsize
+		\begin{tabular}{@{} *6l @{}}    \toprule
+				\emph{DOI} & \emph{Branching model} & \emph{TDD} & \emph{Cross-linking} & \emph{CI}  & (Meta)data standardization \\\midrule
+				 \href{https://doi.org/10.12688/f1000research.11407.1}{10.12688/f1000research.11407.1} 
+					 & -  & -  & -  & - & 1  \\ 
+				 \href{https://doi.org/10.3934/math.2016.3.261}{10.3934/math.2016.3.261} 
+					 & -  & -  & -  & - & 2  \\ 
+				 \href{https://doi.org/10.1371/journal.pbio.1001745}{10.1371/journal.pbio.1001745} 
+					 & 1  & 2  & -  & - & -  \\ 
+				 \href{https://doi.org/10.1371/journal.pcbi.1005510}{10.1371/journal.pcbi.1005510}
+					 & -  & -  & 3 & 1 & 3  \\ 
+				 \href{https://doi.org/10.1145/2723872.2723881}{10.1145/2723872.2723881}
+					 & 1  & -  & - & 1 & -  \\ 
+				 \href{https://dl.acm.org/doi/10.1145/3324989.3325719}{10.1145/3324989.3325719}
+					 & 1  & -  & - & 5 & -  \\ 
+				 \href{https://doi.org/10.1371/journal.pone.0230557}{10.1371/journal.pone.0230557}
+					 & 1  & -  & - & 1 & 4  \\ 
+				 \href{https://doi.org/10.1145/3219104.3219147}{10.1145/3219104.3219147} 
+					 & 1  & -  & -  & 4 & - \\\bottomrule
+				 \hline
+		\end{tabular}
+	\end{center}
+	
+	*\emph{The list may still be incomplete.}
+	
+\end{frame}
 
 \begin{frame}{Outlook}
-
+	\vfill
+	\begin{itemize}
+		\item Automatic publication and cross-linking of CI artefacts. 
+			\begin{itemize}
+				\item Source code archive, Singularity container, secondary data. 
+				\item Data repository API must be used to modify metadata. 
+			\end{itemize}
+		\item Jupyter Hub for interactive analysis of problems in parameter variations.
+		\item Performance tests run on 64-core workstations: moving to the HPC cluster. 
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Acknowledgements}
 
 	\vfill
-	\begin{center}
-		{\large 			
-			Funded by the German Research Foundation (DFG) – Project-ID 265191195 – SFB 1194 : Z-INF
-		}
-	\end{center}
+	{
+		Funded by the German Research Foundation (DFG) – Project-ID 265191195 – SFB 1194 : Z-INF
+	}
 
 \end{frame}
 
