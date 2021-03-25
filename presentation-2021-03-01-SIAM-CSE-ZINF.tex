@@ -80,17 +80,15 @@
 \usepackage[utf8]{inputenc}%kompatibilität mit TeX Versionen vor April 2018
 \fi
 
-
 %Makros für Formatierungen der Doku
 %Im Allgemeinen nicht notwendig!
 \let\code\texttt
 
-\title{A Workflow for Increasing the Quality of Scientific Software}
-\subtitle{SIAM Conference on Computational Science and Engineering 2021-03-01}
-\author[T. Mari\'c, JP. Lehr, I. Pappagianidis, B. Lambie, D. Bothe, C. Bischof]{Tomislav Mari\'c}
+\title{A Workflow for Increasing the Quality of Scientific Software\\ (in Computational Science and Engineering)}
+\subtitle{Exascale Computing Project (ECP) Webinar 2021-04-07}
+\author[\textbf{T. Mari\'c}, JP. Lehr, I. Pappagianidis, B. Lambie, D. Bothe, C. Bischof]{Tomislav Mari\'c}
 \department{TU Darmstadt, Germany}
 \institute{CRC 1194 : Z-INF}
-
 
 %Fremdlogo
 %Logo Macro mit Sternchen skaliert automatisch, sodass das Logo in die Fußzeile passt
@@ -100,9 +98,10 @@
 %Sternchenversion skaliert automatisch und beschneidet das Bild, um die Fläche zu füllen.
 %\titlegraphic*{\includegraphics{example-image}}
 \titlegraphic{\includegraphics[scale=0.47]{figures/ZINF-CI-diagram.pdf}}
-\date{2021-03-01}
+\date{ECP Webinar 2021-04-07}
 
 \usepackage{booktabs}
+\usepackage{fontawesome}
 
 \hypersetup{
   colorlinks,
@@ -114,109 +113,247 @@
 
 \maketitle
 
-\begin{frame}{CSE software at university research groups}
+\begin{frame}{Computational Science and Engineering software in\\university research groups}
 	\framesubtitle{Boundary and initial conditions}
 	
 	\vfill
 	\begin{itemize}
-		\item Publish or perish culture: software is not a priority, publications are.
+            \item Publish or perish \faGraduationCap\footnote{This symbol denotes a sacrifice of code quality for more papers.} prioritizes publications over scientific software.
 		\item Dedicated resources for increasing software quality are usually not available.
 		\item Ph.D. students rotate every ~4-5 years, postdocs every 1-2 years. 
 			\begin{itemize}
 				\item Little or no overlap between successors and predecessors. 
 			\end{itemize}
-		\item Large-scale software design is not a necessary part of the curriculum. 
+		\item Large-scale software design is not a necessary part of the CSE curriculum. 
 			\begin{itemize}
-				\item Different backgrounds: (Applied) Mathematics, Mechanical Engineering, Physics, CSE.
+				\item Different CSE background: (Applied) Mathematics, Mechanical Engineering, Physics, Informatics.
 			\end{itemize}
-		\item Real-world example: onboarding students into \href{https://www.openfoam.com/documentation/guides/latest/api/classes.html}{\beamergotobutton{OpenFOAM}} module development.
+		\item Real-world example: onboarding people into \href{https://www.openfoam.com/documentation/guides/latest/api/classes.html}{\beamergotobutton{OpenFOAM}} module development.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{CSE software at university research groups}
+\begin{frame}{Computational Science and Engineering software in\\university research groups}
 	\framesubtitle{Divergence}
 	
 	\vfill
 	\begin{itemize}
-		\item Not being able to continue development from an earlier state.
-		\item Reproducing results from a publication is not possible.  
-			\begin{itemize}
-				\item Data, source code and publication are not archived and cross-linked. 
-				\item The version used to generate the data is not documented. 
-			\end{itemize}
-		\item Not being able to re-use a model from a publication. 
-			\begin{itemize}
-				\item The model is not implemented in a modular way.
-				\item Version integration was not done.
-				\item Non-granular commits were used. 
-			\end{itemize}
-		\item Having no overview of the impact of a contribution on the rest of the module.
+            \item Not being able to continue development from an earlier state.
+            \item Reproducing results from a publication is not possible.  
+                \begin{itemize}
+                    \item Data, source code and publication are not archived and cross-linked. 
+                    \item The version used to generate the data is not documented. 
+                \end{itemize}
+            \item Not being able to re-use a model from a publication. 
+                \begin{itemize}
+                    \item The model is not implemented in a modular way.
+                    \item Version integration was not done.
+                    \item Non-granular commits were used. 
+                \end{itemize}
+            \item Having no overview of the impact of a change on the rest of the module.
 	\end{itemize}
 
 	\medskip
 
 \end{frame}
 
-\begin{frame}{A workflow for increasing the quality of (academic) CSE software} 
+%\begin{frame}{CSE software in the Collaborative Research Center 1194}
 
-	The academic CSE software quality workflow: 
-	\begin{enumerate}
-		\item Track the issues in a Kanban board.
-		\item Use a pragmatic version-control branching model. 
-		\item Apply Test-Driven Development (TDD) to CSE results.  
-		\item Enable Continuous Integration with an emphasis on result visualization. 
-		\item Cross-link software, result data, and report/article when reaching a milestone.
-			\begin{itemize}
-				\item When submitting a publication to peer-review. 
-				\item After the publication has been accepted. 
-				\item When giving up on an idea. 
-			\end{itemize}
-		\item Bonus step: archive everything in a Singularity container.
-	\end{enumerate}
+    %\begin{itemize}
+        %\item OpenFOAM
+    %\end{itemize}
+
+%\end{frame}
+
+\begin{frame}{A workflow for increasing the quality of scientific CSE software} 
+
+    \vfill
+    \begin{enumerate}
+        \item Track the issues in a Kanban board. 
+            \begin{itemize}
+                \item Work on the same issue with multiple sub-tasks together. 
+                \item Model issues as \href{https://betterscientificsoftware.github.io/PSIP-Tools/PTCs/}{Progress Tracking Cards}.
+            \end{itemize}
+        \item Use a pragmatic version-control branching model. 
+        \item Apply Test-Driven Development (TDD) for CSE software.
+        \item Enable Continuous Integration with an emphasis on result visualization. 
+        \item Cross-link software, result data, and report/article when reaching a milestone.
+            \begin{itemize}
+                \item When submitting a publication to peer-review. 
+                \item After the publication has been accepted. 
+                \item When giving up on an idea. 
+            \end{itemize}
+        \item Bonus step: publish a Singularity image with the code and data.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{A workflow for increasing the quality of (academic) CSE software} 
+    \framesubtitle{OpenFOAM}
+
+        \vfill
+
+        The workflow is developed with OpenFOAM projects but it is tested with other software. 
+
+        \vspace{1cm}
+
+        \textbf{Disclaimer}: This offering is not approved or endorsed by OpenCFD Limited, producer and distributor of the OpenFOAM software via www.openfoam.com, and owner of the OPENFOAM®  and OpenCFD®  trade marks. 
 
 \end{frame}
 
 \begin{frame}{Pragmatic version-control branching model} 
+    \framesubtitle{Separation of Concerns and Single Responsibility}
 
 	\vfill
 	\begin{itemize}
-		\item University research teams \emph{working on the same project} are generally small (2 - 5 members).
-		\item \href{https://en.wikipedia.org/wiki/Separation_of_concerns}{\beamergotobutton{Separation of Concerns (SC)}} and \href{https://en.wikipedia.org/wiki/Single-responsibility_principle}{\beamergotobutton{Single Responsibility Principle (SRP)}} significantly simplify the branching model. 
-			\begin{itemize}
-				\item SC and SRP can be applied to any software.
-				\item Dogmatism should be avoided: single responsibility vs less responsibilities. 
-				\item OpenFOAM already uses Object-Oriented and Generic software design patterns.  
-			\end{itemize}
-		\item A minimalistic feature branching model 
-			\begin{itemize}
-				\item Main branch: integrations from \emph{accepted publications} and \emph{development branch}. 
-				\item Development branch: integration of \emph{broadly (CI)-tested improvements}. 
-				\item Feature branch: SRP reducing git-conflicts, researchers working on different files.
-			\end{itemize}
-		\item Complex branching workflow $\Rightarrow$ complications with onboarding of new members.
+
+            \item University research teams \emph{working on the same project} are generally small (2 - 5 members).
+            \item \href{https://en.wikipedia.org/wiki/Separation_of_concerns}{\beamergotobutton{Separation of Concerns (SC)}} and \href{https://en.wikipedia.org/wiki/Single-responsibility_principle}{\beamergotobutton{Single Responsibility Principle (SRP)}} significantly simplify the branching model. 
+
+            \item \textbf{Separation of Concerns}: code is organized in non-overlapping layers and sections. 
+
+            \item \textbf{Single Responsibility}: functions or classes perform single clear tasks.
+
+            \item SC and SRP can be applied to any software.
+            \item Dogmatism should be avoided: single responsibility vs less responsibilities. 
+            \item OpenFOAM already uses object-oriented and generic software design patterns.  
+
+        \end{itemize}
+\end{frame}
+
+\begin{frame}{Pragmatic version-control branching model} 
+    \framesubtitle{Change integration}
+
+        \vfill
+
+	\begin{itemize}
+            \item Keep the branching model as simple as possible.  
+            \item Main and development branches are protected and managed by Maintainers. 
+            \item Maintainers are responsible for git tags and cleanup: 
+            \begin{itemize}
+                    \item \textbf{Main}: integrations from \emph{accepted publications} and \emph{development branch}. 
+                    \item \textbf{Development}: integration of \emph{broadly (CI)-tested improvements}. 
+                    \item \textbf{Feature}: SRP reduces git-conflicts with researchers working on different files.
+            \end{itemize}
+            \item Complex branching workflow $\Rightarrow$ complications with onboarding new members.
 	\end{itemize}
 
 \end{frame}
 
 \begin{frame}{Test Driven Development} 
-	\vfill
-	Starting to work on \texttt{feature/some-improvement} 
-	\begin{itemize}
-		\item Write or extend the CSE test application first. 
-			\begin{itemize}
-				\item The focus is placed on the expected method improvement from the start. 
-				\item Convergence, verification, validation tests are defined from the start.
-				\item Defining how \emph{secondary data} (data from diagrams and tables) are handled from the start.  
-				\item It is easier to program a good API if you are the user. 
-			\end{itemize}
-		\item \emph{The test application is the solver application with a different input.}
-			\begin{itemize}
-				\item If possible, testing and solution is done by the same executable.  
-				\item This prevents code duplication on the application level. 
-				\item Data output and additional checks can be disabled by (compile-time) options.
-				\item Promotes \href{https://en.wikipedia.org/wiki/Abstract_type}{Abstract Types} (hierarchies, modularity).
-			\end{itemize}
-	\end{itemize}
+    \framesubtitle{Program CSE tests first}
+        \vfill
+
+
+        TDD\footnote{Freeman, Steve, and Nat Pryce. Growing object-oriented software, guided by tests. Pearson Education, 2009.} for CSE
+        \begin{itemize}
+            \item Defining model verification and validation tests at the start.
+            \item Focus placed the final result: interpolation, integration, discretization, PDE solution, physics. 
+            \item Top-down, instead of bottom-up testing.
+            \item Don't go overboard with unit-tests \faGraduationCap: extend unit-tests when debugging a failing CSE test.  
+                \begin{itemize}
+                    \item Focus placed on tests with real-world (publication) input. 
+                \end{itemize}
+        \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Test Driven Development} 
+    \framesubtitle{The CSE tests the class / function interface}
+        \vfill
+
+    \begin{itemize}
+        \item \textbf{New code}: it is easier to program the API you wish for, if you are its first user. 
+            \begin{itemize}
+                \item Make the class interface easy to use correctly and difficult to use incorrectly\footnote{Scott Meyers. 2014. Effective Modern C++: 42 Specific Ways to Improve Your Use of C++11 and C++14 (1st. ed.). O'Reilly Media, Inc.}.
+                \item Reduce number of function arguments, single responsibility, clear naming, ... 
+            \end{itemize}
+        \item \textbf{Legacy code}: extend existing API without modification. 
+            \begin{itemize}
+                \item OpenFOAM: understanding class hierarchies, \textit{finding a base class with Runtime Type Selection and a virtual function to overload.}
+            \end{itemize}
+        \item \textbf{The test application is the solver application with a different input.}
+            \begin{itemize}
+                \item If possible, testing and solution is done by the same code.  
+                \item This prevents code duplication. 
+                \item Data output and additional checks can be disabled by (compile-time) options.
+            \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Test Driven Development} 
+    \framesubtitle{Jupyter notebooks}
+
+    \vfill
+    Jupyter notebooks 
+    \begin{itemize}
+        \item \textbf{Documentation}: geometry, initial and boundary conditions, error norms, comparison data.
+        \item \textbf{Processing}: conservation, convergence, stability, validation errors. 
+        \item \textbf{Analysis}: live, interactive and and remote result analysis for long simulations.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Test Driven Development} 
+    \framesubtitle{Parameter tests: Jupyter notebooks}
+    
+    \vfill
+    \begin{center}
+            \includegraphics[width=0.9\textwidth]{figures/Cluster-Parameter-Study-Organization.pdf}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Test Driven Development} 
+    \framesubtitle{Parameter tests: primary data (simulation results) organization}
+
+    \begin{itemize}
+        \item The quality of CSE software is measured against verification and validation data. 
+        \item Automatic testing and comparison with previous versions (and other works) hinges on data organization and formats.
+    \end{itemize}
+    
+    \vfill
+    \begin{itemize}
+        \item \textbf{Legacy code primary data organization}: 
+            \begin{itemize}
+                \item use the existing folder structure and parameterization tools \faGraduationCap,
+                \item make sure the mapping 'caseXYZ' $\to$ 'parameter vector' is stored (YAML, ...)
+            \end{itemize}
+        \item \textbf{New code primary data organization}: 
+            \begin{itemize}
+                \item Like legacy code: a folder structure and 'caseXYZ' $\to$ 'parameter vector' mapping (YAML, ...) \faGraduationCap.
+                \item HDF5\footnote{\url{https://www.hdfgroup.org/solutions/hdf5}} or other open data format.
+                \item Alternative: \textbf{ExDir}\footnote{Dragly, Svenn-Arne, et al. 'Experimental Directory Structure (Exdir): An alternative to HDF5 without introducing a new file format.' Frontiers in neuroinformatics 12 (2018): 16.} 
+            \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Test Driven Development} 
+    \framesubtitle{Parameter tests: secondary data (tables and diagrams) organization}
+
+    \texttt{pandas.MultiIndex} CSV with metadata for secondary data
+    \begin{itemize}
+        \item \texttt{pandas.MultiIndex} saved in "metadata columns". 
+        \item \textcolor{red}{\textbf{Metadata is repeated}}: not an issue for the tiny secondary data! 
+        \item Metadata in columns $\to$ \texttt{pandas.MultiIndex} $\to$ trivial input for data analysis. 
+        \item \textbf{Direct readable export of tables to LaTex!}
+    \end{itemize}
+
+    \footnotesize
+
+    \begin{tabular}{lllrrr}
+        \toprule
+        {} &         H &     L\_INF &  O(L\_INF) &  EPSILON\_R\_EXACT\_MAX &  O(EPSILON\_R\_EXACT\_MAX)  \\ 
+        VELOCITY\_MODEL &           &           &           &                      &                        \\ 
+        \midrule
+        \textcolor{red}{\textbf{SHEAR\_2D}}       &  0.125000 &  0.032961 &  1.833407 &             0.032961 &                1.833407 \\ 
+        \textcolor{red}{\textbf{SHEAR\_2D}}       &  0.062500 &  0.009249 &  1.955529 &             0.009249 &                1.955529 \\ 
+        \textcolor{red}{\textbf{SHEAR\_2D}}       &  0.031250 &  0.002385 &  1.988745 &             0.002385 &                1.988745 \\ 
+        \textcolor{red}{\textbf{SHEAR\_2D}}       &  0.015625 &  0.000601 &  1.997178 &             0.000601 &                1.997178 \\ 
+        \textcolor{red}{\textbf{SHEAR\_2D}}       &  0.007813 &  0.000150 &  1.999294 &             0.000150 &                1.999294 \\ 
+        \textcolor{red}{\textbf{SHEAR\_2D}}       &  0.003906 &  0.000038 &  1.999294 &             0.000038 &                1.999294 \\ 
+        \bottomrule
+    \end{tabular}
 
 \end{frame}
 
@@ -229,43 +366,29 @@
 \end{frame}
 
 \begin{frame}{Continuous Integration with result visualization} 
-	\vfill
-	Use Jupyter notebooks and python.pandas to document and process CSE results. 
-	\begin{itemize}
-		\item Merge request (or a git push) triggers the CI pipeline.
-		\item The test CI job runs test applications that store secondary data. 
-		\item The processing CI job executes Jupyter notebooks in batch mode.  
-		\item The visualization CI job submits Jupyter notebooks as a blog post in a static page repo. 
-		\item The final CI job checks the Jupyter notebook output for pass / fail classification. 
-	\end{itemize}
+    \framesubtitle{Testing machine, Docker images, artifacts}
 
 \end{frame}
 
 \begin{frame}{Continuous Integration with result visualization} 
-	\framesubtitle{Parameter study organization}
-	
-	\begin{center}
-		\includegraphics[width=0.8\textwidth]{figures/Cluster-Parameter-Study-Organization.pdf}
-	\end{center}
-
-	Jupyter notebooks \& python.pandas
-	\begin{itemize}
-		\item Documenting the tests: geometry, input, boundary conditions, error norms, comparison data.
-		\item Live visualization for long-running parameter variations. 
-		\item \textbf{Simple and open format}: pandas.MultiIndex CSV files, metadata placed in columns. 
-	\end{itemize}
+    \framesubtitle{A GitLab runner with a docker executor and a local image}
 
 \end{frame}
 
-%\begin{frame}{Continuous Integration with result visualization} 
-	%\framesubtitle{pandas.MultiIndex and CSV format}
-	
-	%\begin{itemize}
-		%\item 
-	%\end{itemize}
+\begin{frame}{Continuous Integration with result visualization} 
+    \framesubtitle{Building}
 
-%\end{frame}
+\end{frame}
 
+\begin{frame}{Continuous Integration with result visualization} 
+    \framesubtitle{Running}
+
+\end{frame}
+
+\begin{frame}{Continuous Integration with result visualization} 
+    \framesubtitle{Visualization}
+
+\end{frame}
 
 \begin{frame}{Cross-linking data, source code and reports/publications} 
 	\framesubtitle{Schematic diagram}
@@ -329,13 +452,17 @@
 \begin{frame}{Outlook}
 	\vfill
 	\begin{itemize}
+
+                \item A more detailed webinar: \href{https://www.exascaleproject.org/event/workflow4scisoft}{https://www.exascaleproject.org/event/workflow4scisoft}.
+
+
 		\item Automatic publication and cross-linking of CI artefacts. 
 			\begin{itemize}
 				\item Source code archive, Singularity container, secondary data. 
 				\item Data repository API must be used to modify metadata. 
 			\end{itemize}
 		\item Jupyter Hub for interactive analysis of problems in parameter variations.
-		\item Performance tests run on 64-core workstations: moving to the HPC cluster. 
+		\item Performance CI jobs run on 64-core workstations: moving to the HPC cluster. 
 	\end{itemize}
 \end{frame}
 
