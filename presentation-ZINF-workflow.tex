@@ -118,7 +118,7 @@
 	
 	\vfill
 	\begin{itemize}
-            \item Publish or perish \faGraduationCap\footnote{This symbol denotes a sacrifice of code quality for more papers.} prioritizes publications over scientific software.
+            \item Publish or perish \faGraduationCap\footnote{Symbol of a publish-or-perish simplification of the workflow :)} prioritizes publications over scientific software.
 		\item Dedicated resources for increasing software quality are usually not available.
 		\item Ph.D. students rotate every ~4-5 years, postdocs every 1-2 years. 
 			\begin{itemize}
@@ -170,10 +170,9 @@
     \begin{enumerate}
         \item Track the issues in a Kanban board. 
             \begin{itemize}
-                \item Work on the same issue with multiple sub-tasks together. 
-                \item Model issues as \href{https://betterscientificsoftware.github.io/PSIP-Tools/PTCs/}{Progress Tracking Cards}.
+                \item Model issues as \href{https://betterscientificsoftware.github.io/PSIP-Tools/PTCs/}{Progress Tracking Cards}\footnote{Developed by \href{https://bssw.io/}{Better Scientific Software}!}.
             \end{itemize}
-        \item Use a pragmatic version-control branching model. 
+        \item Use a simple version-control branching model. 
         \item Apply Test-Driven Development (TDD) for CSE software.
         \item Enable Continuous Integration with an emphasis on result visualization. 
         \item Cross-link software, result data, and report/article when reaching a milestone.
@@ -199,7 +198,7 @@
 
 \end{frame}
 
-\begin{frame}{Pragmatic version-control branching model} 
+\begin{frame}{Simple version-control branching model} 
     \framesubtitle{Separation of Concerns and Single Responsibility}
 
 	\vfill
@@ -219,10 +218,12 @@
         \end{itemize}
 \end{frame}
 
-\begin{frame}{Pragmatic version-control branching model} 
+\begin{frame}{Simple version-control branching model} 
     \framesubtitle{Change integration}
 
         \vfill
+
+        \textbf{Maintainers (postdocs, eperienced Ph.D. students) manage the integration.} 
 
 	\begin{itemize}
             \item Keep the branching model as simple as possible.  
@@ -230,7 +231,7 @@
             \item Maintainers are responsible for git tags and cleanup: 
             \begin{itemize}
                     \item \textbf{Main}: integrations from \emph{accepted publications} and \emph{development branch}. 
-                    \item \textbf{Development}: integration of \emph{broadly (CI)-tested improvements}. 
+                    \item \textbf{Development}: integration of \emph{(CI)-tested improvements}. 
                     \item \textbf{Feature}: SRP reduces git-conflicts with researchers working on different files.
             \end{itemize}
             \item Complex branching workflow $\Rightarrow$ complications with onboarding new members.
@@ -368,9 +369,9 @@
 
     \vfill
     \begin{enumerate}
-        \item \textbf{Short small few CPU-core tests}: work-PC \faGraduationCap.    
-        \item \textbf{Short small many-core tests}: obtain a workstation with a 64-Core CPU\footnote{Many thanks to \href{https://www.sfb1194.tu-darmstadt.de/index.en.jsp}{CRC 1194 at TU Darmstadt}}\faGraduationCap.
-        \item \textbf{Long large HPC tests}: combine 1. or 2. with an HPC cluster. 
+        \item \textbf{Short few CPU-core tests}: work-PC \faGraduationCap.    
+        \item \textbf{Short many-core tests}: obtain a workstation with a 64-Core CPU\footnote{Thanks to \href{https://www.sfb1194.tu-darmstadt.de/index.en.jsp}{CRC 1194 at TU Darmstadt}}\faGraduationCap.
+        \item \textbf{HPC tests}: combine 1. or 2. with an HPC cluster. 
     \end{enumerate}
 
     An HPC cluster is relevant for production tests and performance measurements.
@@ -381,7 +382,7 @@
                 \item Convergence ensured for 1. and 2.
                 \item Is efficient in parallel for 1. and 2. 
             \end{itemize}
-        \item \textbf{Challenge}: Is it possible to combine 1., 2. and 3. and keep the workflow simple?
+        \item \textbf{Challenge}: Is it possible to combine 1., 2. and 3. and publish instead of perish \faGraduationCap?
     \end{itemize}
 
 \end{frame}
@@ -412,34 +413,36 @@
 \begin{frame}{Continuous Integration with result visualization} 
     \framesubtitle{Building}
 
+    \vfill
     \begin{itemize}
-        \item Anything added to the Docker container within a job is gone when the job ends. 
+        \item Files created within a job are gone when the job ends. 
         \item GitLab uses \textbf{job artifacts} to pass on data from one job to the next. 
         \item \textbf{Job artifacts only work with files stored in project's sub-folders.} 
-        \item Applications and libraries are transfered from the build job as artifacts.
+        \item Libraries and applications are passed to other jobs as artifacts. 
+        \item Artifacts can be downloaded on the GitLab project website.  
     \end{itemize}
 
 \end{frame}
 
 \begin{frame}[fragile]{Continuous Integration with result visualization} 
-    \framesubtitle{Building OpenFOAM projects or projects with out-of-repository installation}
+    \framesubtitle{Building OpenFOAM projects or projects with out-of-source installation}
 
     \vfill
-    \textbf{Out-of-source installation}: binaries placed outside the repo! 
+    \textbf{Out-of-source installation}: binaries only available outside the repo! 
     \begin{itemize}
         \item \textbf{Use environment variables to build and pass on artifacts} 
         \item \texttt{\$FOAM\_USER\_LIBBIN} folder stores library binaries. 
         \item \texttt{\$FOAM\_USER\_APPBIN} folder stores application binaries. 
         \item \textbf{Build job}: 
             \begin{itemize}
-                \item create folders inside the repo, 
-                \item copy installed binaries to artifact folders, 
+                \item create artifact folders inside the repo, 
+                \item copy library and application binaries to artifact folders, 
                 \item export artifact folders. 
             \end{itemize}
         \item \textbf{Run job}: 
             \begin{itemize} 
-                \item \texttt{mkdir -p} \texttt{\$FOAM\_USER\_LIBBIN} and  \texttt{\$FOAM\_USER\_LIBBIN} 
-                \item copy binaries from the artifact folders to \texttt{\$FOAM\_USER\_LIBBIN} and  \texttt{\$FOAM\_USER\_LIBBIN} 
+                \item \texttt{mkdir -p} \texttt{{\$FOAM\_USER\_LIBBIN, \$FOAM\_USER\_LIBBIN}}
+                \item Copy binaries from the artifact folders to \texttt{\$FOAM\_USER\_LIBBIN} and  \texttt{\$FOAM\_USER\_APPBIN} 
                 \item Run tests.
             \end{itemize}
     \end{itemize}
@@ -447,14 +450,63 @@
 
 \end{frame}
 
-
 \begin{frame}{Continuous Integration with result visualization} 
-    \framesubtitle{Running}
+	\framesubtitle{Schematic diagram}
+
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/ZINF-CI-diagram.pdf}
 
 \end{frame}
 
 \begin{frame}{Continuous Integration with result visualization} 
-    \framesubtitle{Visualization}
+    \framesubtitle{Processing and visualizing results}
+
+    \vfill
+
+    \texttt{jupyter nbconvert notebook.ipynb --execute --to FORMAT}
+
+    \medskip
+
+    \begin{itemize}
+        \item Execute each jupyter notebook in the repository.
+        \item Notebooks agglomerate secondary data into \texttt{pandas.MultiIndex} CSV files. 
+        \item Export secondary data and notebooks in different formats as artifacts.
+        \item \textbf{Visualization} 
+            \begin{itemize}
+                \item Download the artifact and open the notebook \faGraduationCap.
+                \item \textbf{Alternative:} publish the notebook as a blog post in a GitLab Static Page project. 
+                \item Notebooks contain information on failing tests. 
+                \item Mapping "caseXYZ" $\to$ "parameter vector" is crucial for re-starting failed parameter variations! 
+            \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Continuous Integration with result visualization} 
+    \framesubtitle{Test evaluation}
+
+    \vfill
+
+    Very simple
+    \begin{itemize}
+        \item Python scripts that test secondary data agglomerated by the notebooks from simulation results.
+        \item \textbf{Examples:} 
+            \begin{itemize}
+                \item Is the order of convergence of an error norm $\ge 2.0$?
+                \item Is is the difference between simulation and experiment data $\le 4\%$? 
+            \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Continuous Integration with result visualization} 
+    \framesubtitle{Example}
+
+    \vfill
+    \begin{center}
+        \href{https://gitlab.com/tmaric/fvc-reconstruct/-/pipelines/276526868}{Example OpenFOAM CI project} 
+    \end{center}
 
 \end{frame}
 
@@ -462,28 +514,74 @@
 	\framesubtitle{Schematic diagram}
 	
 	\begin{center}
-		\includegraphics[width=0.57\textwidth]{figures/cross-linking.pdf}
+		\includegraphics[width=0.67\textwidth]{figures/cross-linking.pdf}
 	\end{center}
 
 \end{frame}
 
 \begin{frame}{Cross-linking data, source code and reports/publications} 
-	
-	\vfill
-	\begin{itemize}
-		\item Archive secondary data on a data repository (DOI). 
-		\item Archive primary data on a data repository (DOI). 
-		\item Create a git tag on the remote git repository. 
-		\item Archive the source code, binaries and secondary data in a Singularity container (DOI). 
-		\item Refer to result data DOIs, the git repo and the tag in the publication.
-		\item Upload the publication to a repository (DOI, arXiv-ID).
-			\begin{itemize}
-				\item For tech reports and milestones, DOIs can be requested without publication.
-			\end{itemize}
-		\item Edit metadata and the git-tag description until everything is cross-linked.
-	\end{itemize}
+    \framesubtitle{Singularity} 
+        
+    \vfill
+    \begin{itemize}
+        \item Whence the Singularity Image\footnote{https://sylabs.io/docs/}?
+            \begin{itemize}
+                \item More inutitive than Docker: \textbf{a Singularity image is a file.} 
+                \item Built for HPC from the start. 
+                \item Doesn't require root rights. 
+                \item Easily reproducing results as \emph{actual files on a disk}, not "stuff in spinning containers". 
+                \item Maps user folder to the container: result data remains on the host. 
+            \end{itemize}
+        \item Why not replace Docker with Singularity within GitLab CI? 
+            \begin{itemize}
+                \item We're learning how to do this using \href{https://docs.gitlab.com/runner/executors/custom.html}{GitLab custom executors}.
+                \item Does the workflow still survive publish-or-perish \faGraduationCap test?
+            \end{itemize}
+        \item Why a source-code snapshot on-top of the image and the repository? 
+            \begin{itemize}
+                \item Repositories get migrated, deleted, and some researchers still fear images. 
+                \item Quick and direct access to source code from the publication. 
+            \end{itemize}
+    \end{itemize}
 
 \end{frame}
+
+\begin{frame}{Cross-linking data, source code and reports/publications} 
+    \framesubtitle{Singularity simplifies reproducibility}
+
+    \begin{itemize}
+        \item The source code and the data stored in the image can be quickly reproduced.
+        \item Article reviewers can clone, build, run and visualize easily. 
+    \end{itemize}
+
+    \href{https://git.rwth-aachen.de/leia/geophase/-/blob/JCOMP-D-19-01329R2/geophase.def}{Example: Singularity Image from an active review}
+    \begin{itemize}
+        \item Clone the code repository from the image: \\ \texttt{geophase-JCOMP-D-19-01329R2.sif clone geophase}
+        \item Build: \\ \texttt{geophase-JCOMP-D-19-01329R2.sif build geophase build}
+        \item Run tests: \\ \texttt{geophase-JCOMP-D-19-01329R2.sif run-tests geophase build}
+        \item Open the jupyter notebook: \\ \texttt{geophase-JCOMP-D-19-01329R2.sif jupyter-notebook geophase}
+    \end{itemize}
+
+\end{frame}
+
+
+%\begin{frame}{Cross-linking data, source code and reports/publications} 
+	
+	%\vfill
+	%\begin{itemize}
+		%\item Archive secondary data on a data repository (DOI). 
+		%\item Archive primary data on a data repository (DOI). 
+		%\item Create a git tag on the remote git repository. 
+		%\item Archive the source code, binaries and secondary data in a Singularity container (DOI). 
+		%\item Refer to result data DOIs, the git repo and the tag in the publication.
+		%\item Upload the publication to a repository (DOI, arXiv-ID).
+			%\begin{itemize}
+				%\item For tech reports and milestones, DOIs can be requested without publication.
+			%\end{itemize}
+		%\item Edit metadata and the git-tag description until everything is cross-linked.
+	%\end{itemize}
+
+%\end{frame}
 
 \begin{frame}{Similarity with published workflows / practices}
 
@@ -520,17 +618,14 @@
 \begin{frame}{Outlook}
 	\vfill
 	\begin{itemize}
-
-                \item A more detailed webinar: \href{https://www.exascaleproject.org/event/workflow4scisoft}{https://www.exascaleproject.org/event/workflow4scisoft}.
-
-
-		\item Automatic publication and cross-linking of CI artefacts. 
-			\begin{itemize}
-				\item Source code archive, Singularity container, secondary data. 
-				\item Data repository API must be used to modify metadata. 
-			\end{itemize}
-		\item Jupyter Hub for interactive analysis of problems in parameter variations.
-		\item Performance CI jobs run on 64-core workstations: moving to the HPC cluster. 
+            \item Performance CI jobs run on 64-core workstations: moving on to the HPC cluster. 
+            \item Singularity GitLab executor? 
+            \item Jupyter Hub for interactive analysis of problems in parameter variations?
+            \item Automatic publishing and cross-linking of CI artefacts? 
+                \begin{itemize}
+                    \item Source code archive, Singularity container, secondary data. 
+                    \item Data repository API must be used to modify metadata. 
+                \end{itemize}
 	\end{itemize}
 \end{frame}
 
