@@ -85,7 +85,7 @@
 \let\code\texttt
 
 \title{A Workflow for Increasing the Quality of Scientific Software\\ (in Computational Science and Engineering)}
-\subtitle{Exascale Computing Project (ECP) Webinar 2021-04-07}
+\subtitle{Exascale Computing Project (ECP) IDEAS Productivity Webinar 2021-04-07}
 \author[\textbf{T. Mari\'c}, JP. Lehr, I. Pappagianidis, B. Lambie, D. Bothe, C. Bischof]{Tomislav Mari\'c}
 \department{TU Darmstadt, Germany}
 \institute{CRC 1194 : Z-INF}
@@ -98,7 +98,7 @@
 %Sternchenversion skaliert automatisch und beschneidet das Bild, um die Fläche zu füllen.
 %\titlegraphic*{\includegraphics{example-image}}
 \titlegraphic{\includegraphics[scale=0.47]{figures/ZINF-CI-diagram.pdf}}
-\date{ECP Webinar 2021-04-07}
+\date{ECP IDEAS Productivity Webinar 2021-04-07}
 
 \usepackage{booktabs}
 \usepackage{fontawesome}
@@ -170,7 +170,7 @@
     \begin{enumerate}
         \item Track the issues in a Kanban board. 
             \begin{itemize}
-                \item Model issues as \href{https://betterscientificsoftware.github.io/PSIP-Tools/PTCs/}{Progress Tracking Cards}\footnote{Developed by \href{https://bssw.io/}{Better Scientific Software}!}.
+                \item Model issues as \href{https://betterscientificsoftware.github.io/PSIP-Tools/PTCs/}{Progress Tracking Cards}\footnote{Developed by \href{https://bssw.io/}{Better Scientific Software}}.
             \end{itemize}
         \item Use a simple version-control branching model. 
         \item Apply Test-Driven Development (TDD) for CSE software.
@@ -223,7 +223,7 @@
 
         \vfill
 
-        \textbf{Maintainers (postdocs, eperienced Ph.D. students) manage the integration.} 
+        \textbf{Maintainers (postdocs, experienced Ph.D.\ students) manage the integration.} 
 
 	\begin{itemize}
             \item Keep the branching model as simple as possible.  
@@ -370,7 +370,7 @@
     \vfill
     \begin{enumerate}
         \item \textbf{Short few CPU-core tests}: work-PC \faGraduationCap.    
-        \item \textbf{Short many-core tests}: obtain a workstation with a 64-Core CPU\footnote{Thanks to \href{https://www.sfb1194.tu-darmstadt.de/index.en.jsp}{CRC 1194 at TU Darmstadt}}\faGraduationCap.
+        \item \textbf{Short many-core tests}: obtain a workstation with a 64-Core CPU\footnote{Thanks to \href{https://www.sfb1194.tu-darmstadt.de/index.en.jsp}{CRC 1194 at TU Darmstadt.}}\faGraduationCap.
         \item \textbf{HPC tests}: combine 1. or 2. with an HPC cluster. 
     \end{enumerate}
 
@@ -583,7 +583,7 @@
 
 %\end{frame}
 
-\begin{frame}{Similarity with published workflows / practices}
+\begin{frame}{Similarity with other workflows / best practices}
 
 	\vfill
 	Our \emph{(subjective)} estimates* of similarity $1-5$ (higher is more similar), $-$: aspect not addressed.
@@ -621,7 +621,7 @@
             \item Performance CI jobs run on 64-core workstations: moving on to the HPC cluster. 
             \item Singularity GitLab executor? 
             \item Jupyter Hub for interactive analysis of problems in parameter variations?
-            \item Automatic publishing and cross-linking of CI artefacts? 
+            \item Automatic publishing and cross-linking of CI artifacts? 
                 \begin{itemize}
                     \item Source code archive, Singularity container, secondary data. 
                     \item Data repository API must be used to modify metadata. 
