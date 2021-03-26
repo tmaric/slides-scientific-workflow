@@ -67,14 +67,14 @@
 %%
 
 \documentclass[
-	ngerman,%globale Übergabe der Hauptsprache
+	%ngerman,%globale Übergabe der Hauptsprache
 	aspectratio=169,%Beamer eigene Option zum Umschalten des Formates
 	color={accentcolor=2d},
 	logo=true,%Kein Logo auf Folgeseiten
 	colorframetitle=true,%Akzentfarbe auch im Frametitle
 %	logofile=example-image, %Falls die Logo Dateien nicht vorliegen
 	]{tudabeamer}
-\usepackage[main=ngerman]{babel}
+\usepackage[]{babel}
 \usepackage{iftex}
 \ifPDFTeX
 \usepackage[utf8]{inputenc}%kompatibilität mit TeX Versionen vor April 2018
@@ -245,19 +245,17 @@
 
         TDD\footnote{Freeman, Steve, and Nat Pryce. Growing object-oriented software, guided by tests. Pearson Education, 2009.} for CSE
         \begin{itemize}
-            \item Defining model verification and validation tests at the start.
+            \item Define verification and validation tests at the start.
             \item Focus placed the final result: interpolation, integration, discretization, PDE solution, physics. 
-            \item Top-down, instead of bottom-up testing.
+            \item Top-down, instead of bottom-up test coverage.
             \item Don't go overboard with unit-tests \faGraduationCap: extend unit-tests when debugging a failing CSE test.  
-                \begin{itemize}
-                    \item Focus placed on tests with real-world (publication) input. 
-                \end{itemize}
+            \item Focus kept on tests with real-world (publication) input. 
         \end{itemize}
 
 \end{frame}
 
 \begin{frame}{Test Driven Development} 
-    \framesubtitle{The CSE tests the class / function interface}
+    \framesubtitle{Verification and validation tests define the Application Programming Interface}
         \vfill
 
     \begin{itemize}
@@ -288,13 +286,13 @@
     Jupyter notebooks 
     \begin{itemize}
         \item \textbf{Documentation}: geometry, initial and boundary conditions, error norms, comparison data.
-        \item \textbf{Processing}: conservation, convergence, stability, validation errors. 
-        \item \textbf{Analysis}: live, interactive and and remote result analysis for long simulations.
+        \item \textbf{Processing}: verification errors (conservation, convergence, stability), validation errors. 
+        \item \textbf{Result analysis}: very straightforward, interactive, remote.
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Test Driven Development} 
-    \framesubtitle{Parameter tests: Jupyter notebooks}
+    \framesubtitle{Parameter tests}
     
     \vfill
     \begin{center}
@@ -306,23 +304,23 @@
     \framesubtitle{Parameter tests: primary data (simulation results) organization}
 
     \begin{itemize}
-        \item The quality of CSE software is measured against verification and validation data. 
-        \item Automatic testing and comparison with previous versions (and other works) hinges on data organization and formats.
+        \item The quality of CSE software is measured using verification and validation data. 
+        \item Effective comparison with others (previous versions) hinges on data organization.
     \end{itemize}
     
     \vfill
     \begin{itemize}
-        \item \textbf{Legacy code primary data organization}: 
+        \item \textbf{Legacy code primary data}: 
             \begin{itemize}
                 \item use the existing folder structure and parameterization tools \faGraduationCap,
-                \item make sure the mapping 'caseXYZ' $\to$ 'parameter vector' is stored (YAML, ...)
+                \item The mapping (caseXYZ) $\to$ (parameter vector) must be stored (YAML, ...)
             \end{itemize}
-        \item \textbf{New code primary data organization}: 
-            \begin{itemize}
-                \item Like legacy code: a folder structure and 'caseXYZ' $\to$ 'parameter vector' mapping (YAML, ...) \faGraduationCap.
+        \item \textbf{New code primary data options}: 
+            \begin{enumerate}
+                \item Same as legacy code \faGraduationCap
                 \item HDF5\footnote{\url{https://www.hdfgroup.org/solutions/hdf5}} or other open data format.
-                \item Alternative: \textbf{ExDir}\footnote{Dragly, Svenn-Arne, et al. 'Experimental Directory Structure (Exdir): An alternative to HDF5 without introducing a new file format.' Frontiers in neuroinformatics 12 (2018): 16.} 
-            \end{itemize}
+                \item Alternative to HDF5: \textbf{ExDir}\footnote{Dragly, Svenn-Arne, et al. "Experimental Directory Structure (Exdir): An alternative to HDF5 without introducing a new file format." Frontiers in neuroinformatics 12 (2018): 16.} 
+            \end{enumerate}
     \end{itemize}
 
 \end{frame}
@@ -334,8 +332,8 @@
     \texttt{pandas.MultiIndex} CSV with metadata for secondary data
     \begin{itemize}
         \item \texttt{pandas.MultiIndex} saved in "metadata columns". 
-        \item \textcolor{red}{\textbf{Metadata is repeated}}: not an issue for the tiny secondary data! 
-        \item Metadata in columns $\to$ \texttt{pandas.MultiIndex} $\to$ trivial input for data analysis. 
+        \item \textcolor{red}{\textbf{Metadata is repeated}}: not an issue for the small secondary data! 
+        \item Metadata in columns $\to$ \texttt{pandas.MultiIndex} $\to$ strongly simplified data analysis. 
         \item \textbf{Direct readable export of tables to LaTex!}
     \end{itemize}
 
@@ -366,19 +364,89 @@
 \end{frame}
 
 \begin{frame}{Continuous Integration with result visualization} 
-    \framesubtitle{Testing machine, Docker images, artifacts}
+    \framesubtitle{Testing machines and test categorization}
+
+    \vfill
+    \begin{enumerate}
+        \item \textbf{Short small few CPU-core tests}: work-PC \faGraduationCap.    
+        \item \textbf{Short small many-core tests}: obtain a workstation with a 64-Core CPU\footnote{Many thanks to \href{https://www.sfb1194.tu-darmstadt.de/index.en.jsp}{CRC 1194 at TU Darmstadt}}\faGraduationCap.
+        \item \textbf{Long large HPC tests}: combine 1. or 2. with an HPC cluster. 
+    \end{enumerate}
+
+    An HPC cluster is relevant for production tests and performance measurements.
+    \begin{itemize}
+        \item This workflow uses coarse ("smoke") tests \faGraduationCap
+            \begin{itemize}
+                \item Unit tests run for 1. and 2.
+                \item Convergence ensured for 1. and 2.
+                \item Is efficient in parallel for 1. and 2. 
+            \end{itemize}
+        \item \textbf{Challenge}: Is it possible to combine 1., 2. and 3. and keep the workflow simple?
+    \end{itemize}
 
 \end{frame}
 
+
 \begin{frame}{Continuous Integration with result visualization} 
-    \framesubtitle{A GitLab runner with a docker executor and a local image}
+    \framesubtitle{A GitLab runner with a Docker executor and a local Docker image}
+
+    \vfill 
+    Build a Docker image for your software, and track the Dockerfile with the project.\\
+    \medskip
+    \href{https://gitlab.com/tmaric/fvc-reconstruct/-/tree/main/docker}{Example OpenFOAM Dockerfile} on \texttt{ubuntu:focal} with "system" open-mpi and scotch.
+
+    \medskip
+    On the testing machine
+    \begin{itemize}
+        \item Install Docker and GitLab runner and register the GitLab runner with a Docker executor.
+        \item Configure the GitLab runner in \texttt{/etc/gitlab-runner/config.toml} to
+            \begin{itemize}
+                \item use a local Docker image, e.g., \texttt{image = "openfoam-v2012\_ubuntu:focal"}, and
+                \item never pull images \texttt{pull\_policy = never}.
+            \end{itemize}
+    \end{itemize}
+
 
 \end{frame}
 
 \begin{frame}{Continuous Integration with result visualization} 
     \framesubtitle{Building}
 
+    \begin{itemize}
+        \item Anything added to the Docker container within a job is gone when the job ends. 
+        \item GitLab uses \textbf{job artifacts} to pass on data from one job to the next. 
+        \item \textbf{Job artifacts only work with files stored in project's sub-folders.} 
+        \item Applications and libraries are transfered from the build job as artifacts.
+    \end{itemize}
+
 \end{frame}
+
+\begin{frame}[fragile]{Continuous Integration with result visualization} 
+    \framesubtitle{Building OpenFOAM projects or projects with out-of-repository installation}
+
+    \vfill
+    \textbf{Out-of-source installation}: binaries placed outside the repo! 
+    \begin{itemize}
+        \item \textbf{Use environment variables to build and pass on artifacts} 
+        \item \texttt{\$FOAM\_USER\_LIBBIN} folder stores library binaries. 
+        \item \texttt{\$FOAM\_USER\_APPBIN} folder stores application binaries. 
+        \item \textbf{Build job}: 
+            \begin{itemize}
+                \item create folders inside the repo, 
+                \item copy installed binaries to artifact folders, 
+                \item export artifact folders. 
+            \end{itemize}
+        \item \textbf{Run job}: 
+            \begin{itemize} 
+                \item \texttt{mkdir -p} \texttt{\$FOAM\_USER\_LIBBIN} and  \texttt{\$FOAM\_USER\_LIBBIN} 
+                \item copy binaries from the artifact folders to \texttt{\$FOAM\_USER\_LIBBIN} and  \texttt{\$FOAM\_USER\_LIBBIN} 
+                \item Run tests.
+            \end{itemize}
+    \end{itemize}
+
+
+\end{frame}
+
 
 \begin{frame}{Continuous Integration with result visualization} 
     \framesubtitle{Running}
