@@ -85,8 +85,8 @@
 \let\code\texttt
 
 \title{A Workflow for Increasing the Quality of Scientific Software\\ (in Computational Science and Engineering)}
-\subtitle{Exascale Computing Project (ECP) IDEAS Productivity Webinar 2021-04-07}
-\author[\textbf{T. Mari\'c}, JP. Lehr, I. Pappagianidis, B. Lambie, D. Bothe, C. Bischof]{Tomislav Mari\'c}
+\subtitle{IDEAS Productivity Project Webinar 2021-04-07}
+\author[\textbf{T. Mari\'c}, JP. Lehr, I. Pappagianidis, B. Lambie, D. Bothe, C. Bischof]{\textbf{T. Mari\'c}, JP. Lehr, I. Pappagianidis, B. Lambie, D. Bothe, C. Bischof}
 \department{TU Darmstadt, Germany}
 \institute{CRC 1194 : Z-INF}
 
@@ -98,7 +98,7 @@
 %Sternchenversion skaliert automatisch und beschneidet das Bild, um die Fläche zu füllen.
 %\titlegraphic*{\includegraphics{example-image}}
 \titlegraphic{\includegraphics[scale=0.47]{figures/ZINF-CI-diagram.pdf}}
-\date{ECP IDEAS Productivity Webinar 2021-04-07}
+\date{IDEAS Productivity Project Webinar 2021-04-07}
 
 \usepackage{booktabs}
 \usepackage{fontawesome}
@@ -107,11 +107,70 @@
   colorlinks,
   citecolor=violet,
   linkcolor=red,
-  urlcolor=violet}
+  urlcolor=violet
+}
 
 \begin{document}
 
+\setbeamertemplate{footline}{%
+    \hbox{%
+    \begin{beamercolorbox}[wd=.70\paperwidth,ht=4.25ex,dp=3ex,left,leftskip=2ex]{title in head/foot}%
+        \usebeamerfont{title in head/foot}\insertshorttitle{} - \insertshortauthor
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.20\paperwidth,ht=4.25ex,dp=3ex,center]{date in head/foot}%
+        \usebeamerfont{date in head/foot}\insertshortdate{}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.10\paperwidth,ht=4.25ex,dp=3ex,right,rightskip=2ex]{date in head/foot}%
+        \insertframenumber{} / \inserttotalframenumber
+    \end{beamercolorbox}}%
+}
+
+
 \maketitle
+
+\begin{frame}{Motivation: multiphase flow simulation software}
+
+    \begin{center}
+    \includegraphics[width=0.7\textwidth]{figures/interface.png}
+    \end{center}
+    \begin{itemize}
+        \item Fluids that do not mix are separated by an interface $\Sigma(t)$ (surface in 3D). 
+        \item Goal: track $\Sigma(t)$ as it moves in time $t$ and changes its topology. 
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Motivation: multiphase flow simulation software}
+    \framesubtitle{Lagrangian / Eulerian Interface Advection (LEIA) Methods}
+
+    \vfill
+    LEIA methods\footnote{Marić, T., Marschall, H., \& Bothe, D. (2015). lentFoam–A hybrid Level Set/Front Tracking method on unstructured meshes. Computers \& Fluids, 113, 20-31.}\textsuperscript{,}\footnote{\footnotesize Tolle, T., Bothe, D., \& Marić, T. (2020). SAAMPLE: A Segregated Accuracy-driven Algorithm for Multiphase Pressure-Linked Equations. Computers \& Fluids, 200, 104450.}\textsuperscript{,}\footnote{Marić, T., Kothe, D. B., \& Bothe, D. (2020). Unstructured un-split geometrical Volume-of-Fluid methods–A review. Journal of Computational Physics, 420, 109695.} require thorough testing: 
+    \begin{itemize}
+        \item Verification cases: evolution of $\Sigma(t)$ and two-phase flows with exact solutions. 
+
+        \item Validation with respect to experiments.  
+
+        \item Serial and parallel computational efficiency. 
+    \end{itemize}
+
+\end{frame}
+
+%\begin{frame}{Motivation: Level Set / Front Tracking method\footnote{\footnotesize Marić, T., Marschall, H., \& Bothe, D. (2015). lentFoam–A hybrid Level Set/Front Tracking method on unstructured meshes. Computers \& Fluids, 113, 20-31.},\footnote{\footnotesize Tolle, T., Bothe, D., \& Marić, T. (2020). SAAMPLE: A Segregated Accuracy-driven Algorithm for Multiphase Pressure-Linked Equations. Computers \& Fluids, 200, 104450.}}
+
+    %\vfill
+    %\begin{center}
+        %\includegraphics[width=0.5\textwidth]{figures/lent-schematic.pdf}
+    %\end{center}
+%\end{frame}
+
+%\begin{frame}{Motivation: geometrical un-split Volume-of-Fluid method\footnote{Marić, T., Kothe, D. B., \& Bothe, D. (2020). Unstructured un-split geometrical Volume-of-Fluid methods–A review. Journal of Computational Physics, 420, 109695.}}
+
+    %\vfill
+    %\begin{center}
+        %\includegraphics[width=0.6\textwidth]{figures/geovof-schematic.pdf}
+    %\end{center}
+
+%\end{frame}
 
 \begin{frame}{Computational Science and Engineering software in\\university research groups}
 	\framesubtitle{Boundary and initial conditions}
@@ -170,7 +229,7 @@
     \begin{enumerate}
         \item Track the issues in a Kanban board. 
             \begin{itemize}
-                \item Model issues as \href{https://betterscientificsoftware.github.io/PSIP-Tools/PTCs/}{Progress Tracking Cards}\footnote{Developed by \href{https://bssw.io/}{Better Scientific Software}}.
+                \item Model issues as \href{https://betterscientificsoftware.github.io/PSIP-Tools/PTCs/}{Progress Tracking Cards}\footnote{Developed by \href{https://bssw.io/}{Better Scientific Software.}}.
             \end{itemize}
         \item Use a simple version-control branching model. 
         \item Apply Test-Driven Development (TDD) for CSE software.
@@ -284,7 +343,7 @@
     \framesubtitle{Jupyter notebooks}
 
     \vfill
-    Jupyter notebooks 
+    Jupyter notebooks\footnote{\href{https://jupyter.org/}{https://jupyter.org/}}
     \begin{itemize}
         \item \textbf{Documentation}: geometry, initial and boundary conditions, error norms, comparison data.
         \item \textbf{Processing}: verification errors (conservation, convergence, stability), validation errors. 
@@ -311,14 +370,14 @@
     
     \vfill
     \begin{itemize}
-        \item \textbf{Legacy code primary data}: 
+        \item \textbf{Legacy code}: 
             \begin{itemize}
                 \item use the existing folder structure and parameterization tools \faGraduationCap,
-                \item The mapping (caseXYZ) $\to$ (parameter vector) must be stored (YAML, ...)
+                \item The mapping (case000) $\to$ (parameter vector) must be stored (YAML, ...)
             \end{itemize}
-        \item \textbf{New code primary data options}: 
+        \item \textbf{New code}: 
             \begin{enumerate}
-                \item Same as legacy code \faGraduationCap
+                \item Simple folder and file structure \faGraduationCap
                 \item HDF5\footnote{\url{https://www.hdfgroup.org/solutions/hdf5}} or other open data format.
                 \item Alternative to HDF5: \textbf{ExDir}\footnote{Dragly, Svenn-Arne, et al. "Experimental Directory Structure (Exdir): An alternative to HDF5 without introducing a new file format." Frontiers in neuroinformatics 12 (2018): 16.} 
             \end{enumerate}
@@ -330,7 +389,7 @@
 \begin{frame}{Test Driven Development} 
     \framesubtitle{Parameter tests: secondary data (tables and diagrams) organization}
 
-    \texttt{pandas.MultiIndex} CSV with metadata for secondary data
+    \href{https://pandas.pydata.org/}{pandas.MultiIndex} CSV with metadata for secondary data
     \begin{itemize}
         \item \texttt{pandas.MultiIndex} saved in "metadata columns". 
         \item \textcolor{red}{\textbf{Metadata is repeated}}: not an issue for the small secondary data! 
@@ -340,7 +399,7 @@
 
     \footnotesize
 
-    \begin{tabular}{lllrrr}
+    \begin{tabular}{llllll}
         \toprule
         {} &         H &     L\_INF &  O(L\_INF) &  EPSILON\_R\_EXACT\_MAX &  O(EPSILON\_R\_EXACT\_MAX)  \\ 
         VELOCITY\_MODEL &           &           &           &                      &                        \\ 
@@ -402,7 +461,7 @@
         \item Install Docker and GitLab runner and register the GitLab runner with a Docker executor.
         \item Configure the GitLab runner in \texttt{/etc/gitlab-runner/config.toml} to
             \begin{itemize}
-                \item use a local Docker image, e.g., \texttt{image = "openfoam-v2012\_ubuntu:focal"}, and
+                \item use a local Docker image, e.g., \texttt{image = "openfoam-v2012\_ubuntu-focal:latest"}, and
                 \item never pull images \texttt{pull\_policy = never}.
             \end{itemize}
     \end{itemize}
@@ -439,10 +498,11 @@
                 \item copy library and application binaries to artifact folders, 
                 \item export artifact folders. 
             \end{itemize}
-        \item \textbf{Run job}: 
+        \item \textbf{Run job: \textbf{simplified} copying of binary artifacts to OpenFOAM folders}
             \begin{itemize} 
-                \item \texttt{mkdir -p} \texttt{{\$FOAM\_USER\_LIBBIN, \$FOAM\_USER\_LIBBIN}}
-                \item Copy binaries from the artifact folders to \texttt{\$FOAM\_USER\_LIBBIN} and  \texttt{\$FOAM\_USER\_APPBIN} 
+                \item \texttt{mkdir -p} \texttt{\{\$FOAM\_USER\_LIBBIN, \$FOAM\_USER\_APPBIN\}}
+                \item \texttt{cp FOAM\_USER\_LIBBIN/* \$FOAM\_USER\_LIBBIN} 
+                \item \texttt{cp FOAM\_USER\_APPBIN/* \$FOAM\_USER\_APPBIN} 
                 \item Run tests.
             \end{itemize}
     \end{itemize}
@@ -488,9 +548,9 @@
 
     \vfill
 
-    Very simple
+    Very straightforward 
     \begin{itemize}
-        \item Python scripts that test secondary data agglomerated by the notebooks from simulation results.
+        \item Python scripts test secondary data agglomerated by notebooks from simulation results.
         \item \textbf{Examples:} 
             \begin{itemize}
                 \item Is the order of convergence of an error norm $\ge 2.0$?
@@ -526,10 +586,10 @@
     \begin{itemize}
         \item Whence the Singularity Image\footnote{https://sylabs.io/docs/}?
             \begin{itemize}
-                \item More inutitive than Docker: \textbf{a Singularity image is a file.} 
+                \item More intuitive than Docker: \textbf{Singularity handles images as files.} 
                 \item Built for HPC from the start. 
                 \item Doesn't require root rights. 
-                \item Easily reproducing results as \emph{actual files on a disk}, not "stuff in spinning containers". 
+                \item Results as \emph{actual files}, not "data in spinning containers". 
                 \item Maps user folder to the container: result data remains on the host. 
             \end{itemize}
         \item Why not replace Docker with Singularity within GitLab CI? 
@@ -615,6 +675,24 @@
 	
 \end{frame}
 
+\begin{frame}{Lessons learned}
+	\vfill
+        \begin{itemize}
+            \item Keeping the workflow as simple as possible is crucial for acceptance.
+            \item Focusing on secondary data simplifies the workflow significantly.  
+            \item For simulations that run $<24$ hours primary data can be recomputed easily. 
+            \item Periodical cross-linking of research data is done quickly and it is very beneficial. 
+            \item Personal responsibility is crucial at University research groups: who are the maintainers? 
+                \begin{itemize}
+                    \item What are the incentives for maintainers? 
+                \end{itemize}
+            \item Fixing the (parallel) I/O of legacy scientific codes requires a large amount of effort. 
+                \begin{itemize}
+                    \item It should be done outside of research projects. 
+                \end{itemize}
+        \end{itemize}
+\end{frame}
+
 \begin{frame}{Outlook}
 	\vfill
 	\begin{itemize}
@@ -631,10 +709,13 @@
 
 \begin{frame}{Acknowledgements}
 
-	\vfill
-	{\
-		Funded by the German Research Foundation (DFG) – Project-ID 265191195 – SFB 1194 : Z-INF
-	}
+    \vfill
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{crc-logo}
+    \end{center}
+    \begin{center}
+        Funded by the German Research Foundation (DFG) – Project-ID 265191195 – \href{https://www.sfb1194.tu-darmstadt.de/index.en.jsp}{CRC 1194} : Z-INF
+    \end{center}
 
 \end{frame}
 
