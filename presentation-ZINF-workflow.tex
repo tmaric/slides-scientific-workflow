@@ -34,7 +34,7 @@
 %%
 
 %% This is file `DEMO-TUDaBeamer.tex' version 3.10 (2021/02/22),
-%% it is part of
+%marschall@mma.tu-darmstadt.de% it is part of
 %% TUDa-CI -- Corporate Design for TU Darmstadt
 %% ----------------------------------------------------------------------------
 %%
@@ -85,7 +85,7 @@
 \let\code\texttt
 
 \title{A Workflow for Increasing the Quality of Scientific Software\\ (in Computational Science and Engineering)}
-\subtitle{IDEAS Productivity Project Webinar 2021-04-07}
+\subtitle{CRC 1194 Z-INF Webinar 2021-04-22}
 \author[\textbf{T. Mari\'c}, JP. Lehr, I. Pappagianidis, B. Lambie, D. Bothe, C. Bischof]{\textbf{T. Mari\'c}, JP. Lehr, I. Pappagianidis, B. Lambie, D. Bothe, C. Bischof}
 \department{TU Darmstadt, Germany}
 \institute{CRC 1194 : Z-INF}
@@ -97,8 +97,10 @@
 % Da das Bild frei wählbar nach Breite und/oder Höhe skaliert werden kann, werden \width/\height entsprechend gesetzt. So kann die Fläche optimal gefüllt werden.
 %Sternchenversion skaliert automatisch und beschneidet das Bild, um die Fläche zu füllen.
 %\titlegraphic*{\includegraphics{example-image}}
-\titlegraphic{\includegraphics[scale=0.47]{figures/ZINF-CI-diagram.pdf}}
-\date{IDEAS Productivity Project Webinar 2021-04-07}
+\titlegraphic{
+    \includegraphics[scale=0.34]{figures/cross-linking.pdf}
+}
+\date{CRC 1194 Z-INF Webinar 2021-04-22}
 
 \usepackage{booktabs}
 \usepackage{fontawesome}
@@ -109,6 +111,80 @@
   linkcolor=red,
   urlcolor=violet
 }
+
+\usepackage{tikz}
+\usepackage{tikzsymbols}
+\usetikzlibrary{
+    calc,
+    trees,
+    positioning,
+    matrix,
+    chains,
+    scopes,
+    fit,
+    shapes,
+    backgrounds,
+    decorations.pathreplacing,%
+    decorations.pathmorphing%
+}
+\tikzset{
+    >=latex,
+    % For block diagrams
+    root/.style={
+        fill=black!50,
+        draw=black,
+        thick,
+        rounded corners,
+        inner sep=1em,
+        minimum width=2cm
+    },
+    child/.style={
+        root,
+        fill=black!50
+    },
+    % Nesting things
+    nest/.style={
+        matrix of nodes,
+        nodes=chick,
+        row sep=1em,
+        inner sep=0pt
+    },
+    nestContainer/.style={
+        draw=black,
+        align=center,
+        inner sep=1ex
+    },
+    chick/.style={
+        draw=black,
+        fill=black!50,
+        rounded corners,
+        inner sep=1ex,
+        anchor=center
+    },
+    nestName/.style={
+        color=black,
+        draw=none,
+        fill=none,
+        font=\bfseries,
+        inner sep=1ex
+    },
+    % TIKZ inline
+    inline/.style={
+        remember picture,
+        baseline=-.5ex
+    },
+    inlineCode/.style={
+        inline,
+        rectangle,
+        font={\ttfamily},
+        draw=black,
+        fill=black!10,
+        rounded corners,
+        inner sep=1ex
+    }
+}
+\usepackage{tikzscale}
+
 
 \begin{document}
 
@@ -226,21 +302,23 @@
 \begin{frame}{A workflow for increasing the quality of scientific CSE software} 
 
     \vfill
+    The workflow is using GitLab, specifically \href{https://git.rwth-aachen.de/}{TUGitLab}. 
+    Optional steps are in round () brackets.
     \begin{enumerate}
         \item Track the issues in a Kanban board. 
             \begin{itemize}
                 \item Model issues as \href{https://betterscientificsoftware.github.io/PSIP-Tools/PTCs/}{Progress Tracking Cards}\footnote{Developed by \href{https://bssw.io/}{Better Scientific Software.}}.
             \end{itemize}
-        \item Use a simple version-control branching model. 
-        \item Apply Test-Driven Development (TDD) for CSE software.
-        \item Enable Continuous Integration with an emphasis on result visualization. 
+        \item Use version-control with a simple branching model. 
+        \item (Apply Test-Driven Development (TDD) for CSE software.)
+        \item (Enable Continuous Integration with an emphasis on result visualization.) 
         \item Cross-link software, result data, and report/article when reaching a milestone.
             \begin{itemize}
                 \item When submitting a publication to peer-review. 
                 \item After the publication has been accepted. 
                 \item When giving up on an idea. 
             \end{itemize}
-        \item Bonus step: publish a Singularity image with the code and data.
+        \item (Publish a Singularity image with the code and data.)
     \end{enumerate}
 \end{frame}
 
@@ -256,6 +334,199 @@
         \textbf{Disclaimer}: This offering is not approved or endorsed by OpenCFD Limited, producer and distributor of the OpenFOAM software via www.openfoam.com, and owner of the OPENFOAM®  and OpenCFD®  trade marks. 
 
 \end{frame}
+
+\begin{frame}{Issue tracking on GitLab Kanban boards} 
+    \framesubtitle{Why use issue tracking?}
+    \vfill
+
+    Coordinating work on shared text-based information: different people editing same files.\\ 
+    Tracking the status of tasks, bugs, and ideas in one place.\\
+    Avoiding situations like these:
+    \begin{itemize}  
+        \item Why did we try that model a year ago?
+        \item What was that bug in X?
+        \item Meetings for discussing task status. 
+            \begin{itemize}
+                \item Fine for a Ph.D. student in a single project, not so fine for a postdoc with 5 projects. 
+                \item Not necessary if no input is required, only the status update. 
+            \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Issue tracking on GitLab Kanban boards} 
+    \framesubtitle{Kanban board at TUGitLab}
+    \vfill
+
+    \begin{figure}
+        \includegraphics[width=\textwidth]{figures/kanban-board-gitlab.png}
+    \end{figure}
+
+    \begin{itemize}
+        \item Create tasks and update their status.  
+        \item Great for problems / bugs that can't be solved immediately. 
+        \item Descriptions and comments can be done within the tasks (no searching through emails).  
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Issue tracking on GitLab Kanban boards} 
+    \framesubtitle{Progress Tracking Cards I}
+    \vfill
+
+    \href{}{Progress Tracking Cards}\footnote{\href{https://bssw.io/}{https://bssw.io/} Better Scientific Software} are great for teamwork.
+    \begin{enumerate}  
+        \item Title the task that will be solved by the team in terms of what will be achieved.
+        \item Separate the task into subtasks and mention who is responsible for what. 
+            \begin{itemize}
+                \item Each sub-task is titled based on the achieved result.
+            \end{itemize}
+        \item Comment in the task, chat on Slack (Discord, ...) if more discussion is necessary, Zoom / meet if even more discussion is necessary.
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Software engineering: version control}
+    \framesubtitle{What is version control?}
+
+    \vfill
+    \begin{itemize}
+        \item Management of versions of (usually) textual data, like publications and scientific codes.
+        \item Nowadays version control is \textbf{essential} for scientific codes of all shapes and sizes.
+        \item A basis for productive research in teams and increasing the quality of scientific software\footnote{Maric, Tomislav, Lehr, Jan-Patrick, Papagiannidis, Ioannis, Lambie, Benjamin, Bothe, Dieter, \& Bischof, Christian. (2021, April). A Workflow for Increasing the Quality of Scientific Software (Version 1.0). Zenodo. \url{http://doi.org/10.5281/zenodo.4668439}}. 
+    \end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{Software engineering: version control}
+    \framesubtitle{Why use version control?}
+
+    \vfill
+    Why use version control in scientific codes?  
+    \begin{itemize}
+        \item The ability to work with others (colleagues or students) on your research project. 
+            \begin{itemize}
+                \item Work together faster.
+                \item Re-use an interpolation method of a colleague in the group.
+            \end{itemize}
+        \item The ability to trivially try out new ideas and switch back if they don't work.
+            \begin{itemize}
+                \item Speeds up research!
+            \end{itemize}
+        \item The ability to easily recover versions of your project in the same folder. 
+            \begin{itemize}
+                \item Recovering a specific version in a predecessor project code.
+            \end{itemize}
+        \item The ability to understand the motivation behind changes via comments. 
+            \begin{itemize}
+                \item Crucial for continuing existing research projects.
+            \end{itemize}
+        \item The ability to increase the reproducibility of scientific results. 
+            \begin{itemize}
+                \item Basis for cross-linking of data, source code and publications / reports.  
+            \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Software engineering: version control}
+    \framesubtitle{Git version control system (VCS)}
+
+    \vfill
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{figures/Git-Logo-2Color.eps}
+    \end{center}
+
+    \begin{itemize}
+        \item An effective and easy to use software with a set of commands for version control. 
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Software engineering: version control}
+    \framesubtitle{Git basics on a single slide}
+
+    \vfill
+    \begin{itemize}
+        \item The code/text folder is called a \textbf{repository}.
+        \item An online folder shared with the team is the \textbf{remote repository} (short: remote).
+        \item Create a new version: \textbf{checkout} a new \textbf{branch}.  
+        \item Integrate with another version: \textbf{merge} with a \textbf{branch}.
+        \item Add changes in a branch: \textbf{add} changes.
+        \item Integrate changes into a branch: \textbf{commit} changes.
+        \item Share changes with others: \textbf{push} to \textbf{upstream repository}. 
+        \item Get latest changes: \textbf{pull} from the \textbf{upstream repository}.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Software engineering: version control}
+    \framesubtitle{Git basics: resources}
+    \vfill
+
+    Learn basic git \emph{concepts}, they are the same everywhere.  
+    \begin{itemize}
+        \item \href{https://www.youtube.com/watch?v=USjZcfj8yxE}{Git in 15 minutes} 
+        \item \href{https://de.mathworks.com/help/matlab/source-control.html}{Git within Matlab}
+        \item \href{https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow}{Feature branch workflow}
+        \item \href{https://www.youtube.com/watch?v=Jt4Z1vwtXT0}{GitLab for beginners}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Software engineering}
+    \framesubtitle{Decentralized version control}
+
+    \vfill
+    \centering
+    \resizebox{.35\textwidth}{!}{\input{figures/git-decentralized.tikz}\unskip}
+
+    \begin{itemize}
+        \item \textbf{Although git tracks only changes, every repository is still a complete copy of the project.}
+        \item Offline work is supported!  
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Software engineering: version control}
+    \framesubtitle{Version control "enforces" modularity}
+
+    \vfill
+
+    Git conflicts 
+    \begin{itemize}
+        \item A file is changed differently on two branches and a merge is needed.
+        \item Two team members edit the same file at once. 
+    \end{itemize}
+
+    \textbf{Modularity reduces conflicts and speeds up teamwork}
+    \begin{itemize}
+        \item Book chapters as separate files vs. book chapters as folders and sections as separate files.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Software engineering: version control}
+    \framesubtitle{Modularity via Separation of Concerns and Single Responsibility}
+
+	\vfill
+	\begin{itemize}
+
+            \item University research teams (like our LEIA lecture team!) are generally small (2 - 5 members).
+            \item \href{https://en.wikipedia.org/wiki/Separation_of_concerns}{\beamergotobutton{Separation of Concerns (SC)}} and \href{https://en.wikipedia.org/wiki/Single-responsibility_principle}{\beamergotobutton{Single Responsibility Principle (SRP)}} significantly simplify the branching model. 
+
+            \item \textbf{Separation of Concerns}: code is organized in non-overlapping layers and sections. 
+
+            \item \textbf{Single Responsibility}: functions or classes perform single clear tasks.
+
+            \item SC and SRP can be applied to any software.
+            \item Dogmatism should be avoided: single responsibility vs less responsibilities. 
+        \end{itemize}
+
+
+\end{frame}
+
 
 \begin{frame}{Simple version-control branching model} 
     \framesubtitle{Separation of Concerns and Single Responsibility}
@@ -298,7 +569,7 @@
 
 \end{frame}
 
-\begin{frame}{Test Driven Development} 
+\begin{frame}{(Test Driven Development)} 
     \framesubtitle{Program CSE tests first}
         \vfill
 
@@ -314,7 +585,7 @@
 
 \end{frame}
 
-\begin{frame}{Test Driven Development} 
+\begin{frame}{(Test Driven Development)} 
     \framesubtitle{Verification and validation tests define the Application Programming Interface}
         \vfill
 
@@ -352,7 +623,7 @@
 \end{frame}
 
 \begin{frame}{Test Driven Development} 
-    \framesubtitle{Parameter tests}
+    \framesubtitle{(Parameter tests)}
     
     \vfill
     \begin{center}
@@ -415,161 +686,6 @@
 
 \end{frame}
 
-\begin{frame}{Continuous Integration with result visualization} 
-	\framesubtitle{Schematic diagram}
-
-	\centering
-	\includegraphics[width=0.8\textwidth]{figures/ZINF-CI-diagram.pdf}
-
-\end{frame}
-
-\begin{frame}{Continuous Integration with result visualization} 
-    \framesubtitle{Testing machines and test categorization}
-
-    \vfill
-    \begin{enumerate}
-        \item \textbf{Short few CPU-core tests}: work-PC \faGraduationCap.    
-        \item \textbf{Short many-core tests}: obtain a workstation with a 64-Core CPU\footnote{Thanks to \href{https://www.sfb1194.tu-darmstadt.de/index.en.jsp}{CRC 1194 at TU Darmstadt.}}\faGraduationCap.
-        \item \textbf{HPC tests}: combine 1. or 2. with an HPC cluster. 
-    \end{enumerate}
-
-    An HPC cluster is relevant for production tests and performance measurements.
-    \begin{itemize}
-        \item This workflow uses coarse ("smoke") tests \faGraduationCap
-            \begin{itemize}
-                \item Unit tests run for 1. and 2.
-                \item Convergence ensured for 1. and 2.
-                \item Is efficient in parallel for 1. and 2. 
-            \end{itemize}
-        \item \textbf{Challenge}: Is it possible to combine 1., 2. and 3. and publish instead of perish \faGraduationCap?
-    \end{itemize}
-
-\end{frame}
-
-
-\begin{frame}{Continuous Integration with result visualization} 
-    \framesubtitle{A GitLab runner with a Docker executor and a local Docker image}
-
-    \vfill 
-    Build a Docker image for your software, and track the Dockerfile with the project.\\
-    \medskip
-    \href{https://gitlab.com/tmaric/fvc-reconstruct/-/tree/main/docker}{Example OpenFOAM Dockerfile} on \texttt{ubuntu:focal} with "system" open-mpi and scotch.
-
-    \medskip
-    On the testing machine
-    \begin{itemize}
-        \item Install Docker and GitLab runner and register the GitLab runner with a Docker executor.
-        \item Configure the GitLab runner in \texttt{/etc/gitlab-runner/config.toml} to
-            \begin{itemize}
-                \item use a local Docker image, e.g., \texttt{image = "openfoam-v2012\_ubuntu-focal:latest"}, and
-                \item never pull images \texttt{pull\_policy = never}.
-            \end{itemize}
-    \end{itemize}
-
-
-\end{frame}
-
-\begin{frame}{Continuous Integration with result visualization} 
-    \framesubtitle{Building}
-
-    \vfill
-    \begin{itemize}
-        \item Files created within a job are gone when the job ends. 
-        \item GitLab uses \textbf{job artifacts} to pass on data from one job to the next. 
-        \item \textbf{Job artifacts only work with files stored in project's sub-folders.} 
-        \item Libraries and applications are passed to other jobs as artifacts. 
-        \item Artifacts can be downloaded on the GitLab project website.  
-    \end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{Continuous Integration with result visualization} 
-    \framesubtitle{Building OpenFOAM projects or projects with out-of-source installation}
-
-    \vfill
-    \textbf{Out-of-source installation}: binaries only available outside the repo! 
-    \begin{itemize}
-        \item \textbf{Use environment variables to build and pass on artifacts} 
-        \item \texttt{\$FOAM\_USER\_LIBBIN} folder stores library binaries. 
-        \item \texttt{\$FOAM\_USER\_APPBIN} folder stores application binaries. 
-        \item \textbf{Build job}: 
-            \begin{itemize}
-                \item create artifact folders inside the repo, 
-                \item copy library and application binaries to artifact folders, 
-                \item export artifact folders. 
-            \end{itemize}
-        \item \textbf{Run job: \textbf{simplified} copying of binary artifacts to OpenFOAM folders}
-            \begin{itemize} 
-                \item \texttt{mkdir -p} \texttt{\{\$FOAM\_USER\_LIBBIN, \$FOAM\_USER\_APPBIN\}}
-                \item \texttt{cp FOAM\_USER\_LIBBIN/* \$FOAM\_USER\_LIBBIN} 
-                \item \texttt{cp FOAM\_USER\_APPBIN/* \$FOAM\_USER\_APPBIN} 
-                \item Run tests.
-            \end{itemize}
-    \end{itemize}
-
-
-\end{frame}
-
-\begin{frame}{Continuous Integration with result visualization} 
-	\framesubtitle{Schematic diagram}
-
-	\centering
-	\includegraphics[width=0.8\textwidth]{figures/ZINF-CI-diagram.pdf}
-
-\end{frame}
-
-\begin{frame}{Continuous Integration with result visualization} 
-    \framesubtitle{Processing and visualizing results}
-
-    \vfill
-
-    \texttt{jupyter nbconvert notebook.ipynb --execute --to FORMAT}
-
-    \medskip
-
-    \begin{itemize}
-        \item Execute each jupyter notebook in the repository.
-        \item Notebooks agglomerate secondary data into \texttt{pandas.MultiIndex} CSV files. 
-        \item Export secondary data and notebooks in different formats as artifacts.
-        \item \textbf{Visualization} 
-            \begin{itemize}
-                \item Download the artifact and open the notebook \faGraduationCap.
-                \item \textbf{Alternative:} publish the notebook as a blog post in a GitLab Static Page project. 
-                \item Notebooks contain information on failing tests. 
-                \item Mapping "caseXYZ" $\to$ "parameter vector" is crucial for re-starting failed parameter variations! 
-            \end{itemize}
-    \end{itemize}
-
-\end{frame}
-
-
-\begin{frame}{Continuous Integration with result visualization} 
-    \framesubtitle{Test evaluation}
-
-    \vfill
-
-    Very straightforward 
-    \begin{itemize}
-        \item Python scripts test secondary data agglomerated by notebooks from simulation results.
-        \item \textbf{Examples:} 
-            \begin{itemize}
-                \item Is the order of convergence of an error norm $\ge 2.0$?
-                \item Is is the difference between simulation and experiment data $\le 4\%$? 
-            \end{itemize}
-    \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Continuous Integration with result visualization} 
-    \framesubtitle{Example}
-
-    \vfill
-    \begin{center}
-        \href{https://gitlab.com/tmaric/fvc-reconstruct/-/pipelines/279564790}{Example OpenFOAM CI project} 
-    \end{center}
-
-\end{frame}
-
 \begin{frame}{Cross-linking data, source code and reports/publications} 
 	\framesubtitle{Schematic diagram}
 	
@@ -579,7 +695,7 @@
 
 \end{frame}
 
-\begin{frame}{Cross-linking data, source code and reports/publications} 
+\begin{frame}{(Cross-linking data, source code and reports/publications)} 
     \framesubtitle{Singularity} 
         
     \vfill
@@ -606,7 +722,7 @@
 
 \end{frame}
 
-\begin{frame}{Cross-linking data, source code and reports/publications} 
+\begin{frame}{(Cross-linking data, source code and reports/publications)} 
     \framesubtitle{Singularity simplifies reproducibility}
 
     \begin{itemize}
@@ -623,6 +739,162 @@
     \end{itemize}
 
 \end{frame}
+
+\begin{frame}{(Continuous Integration with result visualization)} 
+	\framesubtitle{Schematic diagram}
+
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/ZINF-CI-diagram.pdf}
+
+\end{frame}
+
+\begin{frame}{(Continuous Integration with result visualization)} 
+    \framesubtitle{Testing machines and test categorization}
+
+    \vfill
+    \begin{enumerate}
+        \item \textbf{Short few CPU-core tests}: work-PC \faGraduationCap.    
+        \item \textbf{Short many-core tests}: obtain a workstation with a 64-Core CPU\footnote{Thanks to \href{https://www.sfb1194.tu-darmstadt.de/index.en.jsp}{CRC 1194 at TU Darmstadt.}}\faGraduationCap.
+        \item \textbf{HPC tests}: combine 1. or 2. with an HPC cluster. 
+    \end{enumerate}
+
+    An HPC cluster is relevant for production tests and performance measurements.
+    \begin{itemize}
+        \item This workflow uses coarse ("smoke") tests \faGraduationCap
+            \begin{itemize}
+                \item Unit tests run for 1. and 2.
+                \item Convergence ensured for 1. and 2.
+                \item Is efficient in parallel for 1. and 2. 
+            \end{itemize}
+        \item \textbf{Challenge}: Is it possible to combine 1., 2. and 3. and publish instead of perish \faGraduationCap?
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{(Continuous Integration with result visualization)} 
+    \framesubtitle{A GitLab runner with a Docker executor and a local Docker image}
+
+    \vfill 
+    Build a Docker image for your software, and track the Dockerfile with the project.\\
+    \medskip
+    \href{https://gitlab.com/tmaric/fvc-reconstruct/-/tree/main/docker}{Example OpenFOAM Dockerfile} on \texttt{ubuntu:focal} with "system" open-mpi and scotch.
+
+    \medskip
+    On the testing machine
+    \begin{itemize}
+        \item Install Docker and GitLab runner and register the GitLab runner with a Docker executor.
+        \item Configure the GitLab runner in \texttt{/etc/gitlab-runner/config.toml} to
+            \begin{itemize}
+                \item use a local Docker image, e.g., \texttt{image = "openfoam-v2012\_ubuntu-focal:latest"}, and
+                \item never pull images \texttt{pull\_policy = never}.
+            \end{itemize}
+    \end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{(Continuous Integration with result visualization)} 
+    \framesubtitle{Building}
+
+    \vfill
+    \begin{itemize}
+        \item Files created within a job are gone when the job ends. 
+        \item GitLab uses \textbf{job artifacts} to pass on data from one job to the next. 
+        \item \textbf{Job artifacts only work with files stored in project's sub-folders.} 
+        \item Libraries and applications are passed to other jobs as artifacts. 
+        \item Artifacts can be downloaded on the GitLab project website.  
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{(Continuous Integration with result visualization)} 
+    \framesubtitle{Building OpenFOAM projects or projects with out-of-source installation}
+
+    \vfill
+    \textbf{Out-of-source installation}: binaries only available outside the repo! 
+    \begin{itemize}
+        \item \textbf{Use environment variables to build and pass on artifacts} 
+        \item \texttt{\$FOAM\_USER\_LIBBIN} folder stores library binaries. 
+        \item \texttt{\$FOAM\_USER\_APPBIN} folder stores application binaries. 
+        \item \textbf{Build job}: 
+            \begin{itemize}
+                \item create artifact folders inside the repo, 
+                \item copy library and application binaries to artifact folders, 
+                \item export artifact folders. 
+            \end{itemize}
+        \item \textbf{Run job: \textbf{simplified} copying of binary artifacts to OpenFOAM folders}
+            \begin{itemize} 
+                \item \texttt{mkdir -p} \texttt{\{\$FOAM\_USER\_LIBBIN, \$FOAM\_USER\_APPBIN\}}
+                \item \texttt{cp FOAM\_USER\_LIBBIN/* \$FOAM\_USER\_LIBBIN} 
+                \item \texttt{cp FOAM\_USER\_APPBIN/* \$FOAM\_USER\_APPBIN} 
+                \item Run tests.
+            \end{itemize}
+    \end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{(Continuous Integration with result visualization)} 
+	\framesubtitle{Schematic diagram}
+
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/ZINF-CI-diagram.pdf}
+
+\end{frame}
+
+\begin{frame}{(Continuous Integration with result visualization)} 
+    \framesubtitle{Processing and visualizing results}
+
+    \vfill
+
+    \texttt{jupyter nbconvert notebook.ipynb --execute --to FORMAT}
+
+    \medskip
+
+    \begin{itemize}
+        \item Execute each jupyter notebook in the repository.
+        \item Notebooks agglomerate secondary data into \texttt{pandas.MultiIndex} CSV files. 
+        \item Export secondary data and notebooks in different formats as artifacts.
+        \item \textbf{Visualization} 
+            \begin{itemize}
+                \item Download the artifact and open the notebook \faGraduationCap.
+                \item \textbf{Alternative:} publish the notebook as a blog post in a GitLab Static Page project. 
+                \item Notebooks contain information on failing tests. 
+                \item Mapping "caseXYZ" $\to$ "parameter vector" is crucial for re-starting failed parameter variations! 
+            \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{(Continuous Integration with result visualization)} 
+    \framesubtitle{Test evaluation}
+
+    \vfill
+
+    Very straightforward 
+    \begin{itemize}
+        \item Python scripts test secondary data agglomerated by notebooks from simulation results.
+        \item \textbf{Examples:} 
+            \begin{itemize}
+                \item Is the order of convergence of an error norm $\ge 2.0$?
+                \item Is is the difference between simulation and experiment data $\le 4\%$? 
+            \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{(Continuous Integration with result visualization)} 
+    \framesubtitle{Example}
+
+    \vfill
+    \begin{center}
+        \href{https://gitlab.com/tmaric/fvc-reconstruct/-/pipelines/279564790}{Example OpenFOAM CI project} 
+    \end{center}
+
+\end{frame}
+
 
 
 %\begin{frame}{Cross-linking data, source code and reports/publications} 
@@ -675,37 +947,52 @@
 	
 \end{frame}
 
-\begin{frame}{Lessons learned}
-	\vfill
-        \begin{itemize}
-            \item Keeping the workflow as simple as possible is crucial for acceptance.
-            \item Focusing on secondary data simplifies the workflow significantly.  
-            \item For simulations that run $<24$ hours primary data can be recomputed easily. 
-            \item Periodical cross-linking of research data is done quickly and it is very beneficial. 
-            \item Personal responsibility is crucial at University research groups: who are the maintainers? 
-                \begin{itemize}
-                    \item What are the incentives for maintainers? 
-                \end{itemize}
-            \item Fixing the (parallel) I/O of legacy scientific codes requires a large amount of effort. 
-                \begin{itemize}
-                    \item It should be done outside of research projects. 
-                \end{itemize}
-        \end{itemize}
+\begin{frame}{Summary: the minimal workflow} 
+    \vfill
+
+    Minimal workflow
+    \begin{itemize}
+        \item Track the status of your project using the GitLab Kanban board.
+        \item Learn and apply the very basics of git, understand the concepts behind branching, merging, commits and working with remote repositories.   
+        \item Integrate the changes that worked, don't leave 30 branches open. 
+        \item Format the data using established (open-source) formats if possible, if not, at least do this for secondary data (diagrams and tables). 
+        \item Share your secondary data on a (TUdatalib) data repository. 
+        \item Periodically cross-link research data: publication/report, scripts/code, secondary and primary data. 
+    \end{itemize}
+
 \end{frame}
 
-\begin{frame}{Outlook}
-	\vfill
-	\begin{itemize}
-            \item Performance CI jobs run on 64-core workstations: moving on to the HPC cluster. 
-            \item Singularity GitLab executor? 
-            \item Jupyter Hub for interactive analysis of problems in parameter variations?
-            \item Automatic publishing and cross-linking of CI artifacts? 
-                \begin{itemize}
-                    \item Source code archive, Singularity container, secondary data. 
-                    \item Data repository API must be used to modify metadata. 
-                \end{itemize}
-	\end{itemize}
-\end{frame}
+%\begin{frame}{Lessons learned}
+	%\vfill
+        %\begin{itemize}
+            %\item Keeping the workflow as simple as possible is crucial for acceptance.
+            %\item Focusing on secondary data simplifies the workflow significantly.  
+            %\item For simulations that run $<24$ hours primary data can be recomputed easily. 
+            %\item Periodical cross-linking of research data is done quickly and it is very beneficial. 
+            %\item Personal responsibility is crucial at University research groups: who are the maintainers? 
+                %\begin{itemize}
+                    %\item What are the incentives for maintainers? 
+                %\end{itemize}
+            %\item Fixing the (parallel) I/O of legacy scientific codes requires a large amount of effort. 
+                %\begin{itemize}
+                    %\item It should be done outside of research projects. 
+                %\end{itemize}
+        %\end{itemize}
+%\end{frame}
+
+%\begin{frame}{Outlook}
+	%\vfill
+	%\begin{itemize}
+            %\item Performance CI jobs run on 64-core workstations: moving on to the HPC cluster. 
+            %\item Singularity GitLab executor? 
+            %\item Jupyter Hub for interactive analysis of problems in parameter variations?
+            %\item Automatic publishing and cross-linking of CI artifacts? 
+                %\begin{itemize}
+                    %\item Source code archive, Singularity container, secondary data. 
+                    %\item Data repository API must be used to modify metadata. 
+                %\end{itemize}
+	%\end{itemize}
+%\end{frame}
 
 \begin{frame}{Acknowledgements}
 

@@ -1,0 +1,26 @@
+\begin{tikzpicture}[scale=0.5]
+
+    \matrix[nest] (server) {
+        |[nestName]| \footnotesize Remote repository \\
+        | (serverDB) | \footnotesize Upstream branch \\
+        | (serverDB) | \footnotesize "Change database" \\
+    };
+    \matrix[nest, left=of server.south, matrix anchor=north east,yshift=-4em] (child1) {
+        |[nestName]| \footnotesize Local repository 1 \\
+        |[child] (version1) | \footnotesize Local branch A \\
+        |[child] (version1) | \footnotesize "Change database"\\
+    };
+    \matrix[nest, right=of server.south, matrix anchor=north west,yshift=-4em] (child2) {
+        |[nestName]| \footnotesize Local repository 2 \\
+        |[child] (version2) | \footnotesize Local branch B \\
+        |[child] (version1) | \footnotesize "Change database" \\
+    };
+    \node[nestContainer, fit=(server)] {};
+    \node[nestContainer, fit=(child1)] {};
+    \node[nestContainer, fit=(child2)] {};
+
+    \draw[<->,thick] (child1) -- node[midway,above,sloped,fill=white] {\footnotesize checkout} (server.south west);
+    \draw[<->,thick] (child2) -- node[midway,above,sloped,fill=white] {\footnotesize checkout} (server.south east);
+
+\end{tikzpicture}
+
