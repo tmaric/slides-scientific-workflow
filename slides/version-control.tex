@@ -1,0 +1,184 @@
+\section{Version control}
+
+\begin{frame}{Software engineering: version control}
+    \framesubtitle{What is version control?}
+
+    \vfill
+    \begin{itemize}
+        \item Management of versions of (usually) textual data, like publications and scientific codes.
+        \item Nowadays version control is \textbf{essential} for scientific codes of all shapes and sizes.
+        \item A basis for productive research in teams and increasing the quality of scientific software\footnote{Maric, Tomislav, Lehr, Jan-Patrick, Papagiannidis, Ioannis, Lambie, Benjamin, Bothe, Dieter, \& Bischof, Christian. (2021, April). A Workflow for Increasing the Quality of Scientific Software (Version 1.0). Zenodo. \url{http://doi.org/10.5281/zenodo.4668439}}. 
+    \end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{Software engineering: version control}
+    \framesubtitle{Why use version control?}
+
+    \vfill
+    Why use version control in scientific codes?  
+    \begin{itemize}
+        \item The ability to work with others (colleagues or students) on your research project. 
+            \begin{itemize}
+                \item Work together faster.
+                \item Re-use an interpolation method of a colleague in the group.
+            \end{itemize}
+        \item The ability to trivially try out new ideas and switch back if they don't work.
+            \begin{itemize}
+                \item Speeds up research!
+            \end{itemize}
+        \item The ability to easily recover versions of your project in the same folder. 
+            \begin{itemize}
+                \item Recovering a specific version in a predecessor project code.
+            \end{itemize}
+        \item The ability to understand the motivation behind changes via comments. 
+            \begin{itemize}
+                \item Crucial for continuing existing research projects.
+            \end{itemize}
+        \item The ability to increase the reproducibility of scientific results. 
+            \begin{itemize}
+                \item Basis for cross-linking of data, source code and publications / reports.  
+            \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Software engineering: version control}
+    \framesubtitle{Git version control system (VCS)}
+
+    \vfill
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{figures/Git-Logo-2Color.eps}
+    \end{center}
+
+    \begin{itemize}
+        \item An effective and easy to use software with a set of commands for version control. 
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Software engineering: version control}
+    \framesubtitle{Git basics on a single slide}
+
+    \vfill
+    \begin{itemize}
+        \item The code/text folder is called a \textbf{repository}.
+        \item An online folder shared with the team is the \textbf{remote repository} (short: remote).
+        \item Create a new version: \textbf{checkout} a new \textbf{branch}.  
+        \item Integrate with another version: \textbf{merge} with a \textbf{branch}.
+        \item Add changes in a branch: \textbf{add} changes.
+        \item Integrate changes into a branch: \textbf{commit} changes.
+        \item Share changes with others: \textbf{push} to \textbf{upstream repository}. 
+        \item Get latest changes: \textbf{pull} from the \textbf{upstream repository}.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Software engineering: version control}
+    \framesubtitle{Git basics: resources}
+    \vfill
+
+    Learn basic git \emph{concepts}, they are the same everywhere.  
+    \begin{itemize}
+        \item \href{https://www.youtube.com/watch?v=USjZcfj8yxE}{Git in 15 minutes} 
+        \item \href{https://de.mathworks.com/help/matlab/source-control.html}{Git within Matlab}
+        \item \href{https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow}{Feature branch workflow}
+        \item \href{https://www.youtube.com/watch?v=Jt4Z1vwtXT0}{GitLab for beginners}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Software engineering}
+    \framesubtitle{Decentralized version control}
+
+    \vfill
+    \centering
+    \resizebox{.35\textwidth}{!}{\input{figures/git-decentralized.tikz}\unskip}
+
+    \begin{itemize}
+        \item \textbf{Although git tracks only changes, every repository is still a complete copy of the project.}
+        \item Offline work is supported!  
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Software engineering: version control}
+    \framesubtitle{Version control "enforces" modularity}
+
+    \vfill
+
+    Git conflicts 
+    \begin{itemize}
+        \item A file is changed differently on two branches and a merge is needed.
+        \item Two team members edit the same file at once. 
+    \end{itemize}
+
+    \textbf{Modularity reduces conflicts and speeds up teamwork}
+    \begin{itemize}
+        \item Book chapters as separate files vs. book chapters as folders and sections as separate files.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Software engineering: version control}
+    \framesubtitle{Modularity via Separation of Concerns and Single Responsibility}
+
+	\vfill
+	\begin{itemize}
+
+            \item University research teams (like our LEIA lecture team!) are generally small (2 - 5 members).
+            \item \href{https://en.wikipedia.org/wiki/Separation_of_concerns}{\beamergotobutton{Separation of Concerns (SC)}} and \href{https://en.wikipedia.org/wiki/Single-responsibility_principle}{\beamergotobutton{Single Responsibility Principle (SRP)}} significantly simplify the branching model. 
+
+            \item \textbf{Separation of Concerns}: code is organized in non-overlapping layers and sections. 
+
+            \item \textbf{Single Responsibility}: functions or classes perform single clear tasks.
+
+            \item SC and SRP can be applied to any software.
+            \item Dogmatism should be avoided: single responsibility vs less responsibilities. 
+        \end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}{Simple version-control branching model} 
+    \framesubtitle{Separation of Concerns and Single Responsibility}
+
+	\vfill
+	\begin{itemize}
+
+            \item University research teams \emph{working on the same project} are generally small (2 - 5 members).
+            \item \href{https://en.wikipedia.org/wiki/Separation_of_concerns}{\beamergotobutton{Separation of Concerns (SC)}} and \href{https://en.wikipedia.org/wiki/Single-responsibility_principle}{\beamergotobutton{Single Responsibility Principle (SRP)}} significantly simplify the branching model. 
+
+            \item \textbf{Separation of Concerns}: code is organized in non-overlapping layers and sections. 
+
+            \item \textbf{Single Responsibility}: functions or classes perform single clear tasks.
+
+            \item SC and SRP can be applied to any software.
+            \item Dogmatism should be avoided: single responsibility vs less responsibilities. 
+            \item OpenFOAM already uses object-oriented and generic software design patterns.  
+
+        \end{itemize}
+\end{frame}
+
+\begin{frame}{Simple version-control branching model} 
+    \framesubtitle{Change integration}
+
+        \vfill
+
+        \textbf{Maintainers (postdocs, experienced Ph.D.\ students) manage the integration.} 
+
+	\begin{itemize}
+            \item Keep the branching model as simple as possible.  
+            \item Main and development branches are protected and managed by Maintainers. 
+            \item Maintainers are responsible for git tags and cleanup: 
+            \begin{itemize}
+                    \item \textbf{Main}: integrations from \emph{accepted publications} and \emph{development branch}. 
+                    \item \textbf{Development}: integration of \emph{(CI)-tested improvements}. 
+                    \item \textbf{Feature}: SRP reduces git-conflicts with researchers working on different files.
+            \end{itemize}
+            \item Complex branching workflow $\Rightarrow$ complications with onboarding new members.
+	\end{itemize}
+
+\end{frame}
