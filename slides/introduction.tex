@@ -16,13 +16,19 @@
     \framesubtitle{Lagrangian / Eulerian Interface Advection (LEIA) Methods}
 
     \vfill
-    LEIA methods\footnote{Marić, T., Marschall, H., \& Bothe, D. (2015). lentFoam–A hybrid Level Set/Front Tracking method on unstructured meshes. Computers \& Fluids, 113, 20-31.}\textsuperscript{,}\footnote{\footnotesize Tolle, T., Bothe, D., \& Marić, T. (2020). SAAMPLE: A Segregated Accuracy-driven Algorithm for Multiphase Pressure-Linked Equations. Computers \& Fluids, 200, 104450.}\textsuperscript{,}\footnote{Marić, T., Kothe, D. B., \& Bothe, D. (2020). Unstructured un-split geometrical Volume-of-Fluid methods–A review. Journal of Computational Physics, 420, 109695.} require thorough testing: 
+    LEIA methods
+    \footnote{Marić, T., Marschall, H., \& Bothe, D. (2015). lentFoam–A hybrid Level Set/Front Tracking method on unstructured meshes. Computers \& Fluids, 113, 20-31.}\textsuperscript{,}
+    \footnote{\footnotesize Tolle, T., Bothe, D., \& Marić, T. (2020). SAAMPLE: A Segregated Accuracy-driven Algorithm for Multiphase Pressure-Linked Equations. Computers \& Fluids, 200, 104450.}\textsuperscript{,}
+    \footnote{Marić, T., Kothe, D. B., \& Bothe, D. (2020). Unstructured un-split geometrical Volume-of-Fluid methods–A review. Journal of Computational Physics, 420, 109695.}\textsuperscript{,}
+    \footnote{\footnotesize Marić, T. (2021). Iterative Volume-of-Fluid interface positioning in general polyhedrons with Consecutive Cubic Spline interpolation. Journal of Computational Physics: X, 11, 100093.}\textsuperscript{,}
+    \footnote{\footnotesize Tolle, T., Gründing, D., Bothe, D., \& Marić, T. (2021). Computing volume fractions and signed distances from triangulated surfaces immersed in unstructured meshes. arXiv preprint arXiv:2101.08511.}
+    require thorough testing: 
     \begin{itemize}
         \item Verification cases: evolution of $\Sigma(t)$ and two-phase flows with exact solutions. 
 
         \item Validation with respect to experiments.  
 
-        \item Serial and parallel computational efficiency. 
+        \item Testing serial and parallel computational efficiency. 
     \end{itemize}
 
 \end{frame}
@@ -41,7 +47,6 @@
     %\begin{center}
         %\includegraphics[width=0.6\textwidth]{figures/geovof-schematic.pdf}
     %\end{center}
-
 %\end{frame}
 
 \begin{frame}{Computational Science and Engineering software in\\university research groups}
@@ -63,67 +68,56 @@
 	\end{itemize}
 \end{frame}
 
+\begin{frame}{NFDI4Ing to the rescue!}
+\framesubtitle{Resources for engineering research software}
+    \vfill
+
+    \begin{center}
+    \includegraphics[width=\textwidth]{figures/nfdi4ing.jpg}
+    \end{center}
+    \href{https://nfdi4ing.de}{NFDI4Ing} resources. 
+
+\end{frame}
+
+\begin{frame}{BSSW to the rescue!}
+\framesubtitle{Resources for engineering research software}
+    \vfill
+
+    \begin{center}
+    \includegraphics[width=0.6\textwidth]{figures/bssw.png}
+    \end{center}
+    \href{https://bssw.io}{Better Scientific Software} resources. 
+
+\end{frame}
+
+
 \begin{frame}{Computational Science and Engineering software in\\university research groups}
-	\framesubtitle{Divergence}
+    \framesubtitle{Total chaos of inheriting scientific software (legacy scientific code)}
+        \vfill
 	
-	\vfill
-	\begin{itemize}
-            \item Not being able to continue development from an earlier state.
-            \item Reproducing results from a publication is not possible.  
-                \begin{itemize}
-                    \item Data, source code and publication are not archived and cross-linked. 
-                    \item The version used to generate the data is not documented. 
-                \end{itemize}
-            \item Not being able to re-use a model from a publication. 
-                \begin{itemize}
-                    \item The model is not implemented in a modular way.
-                    \item Version integration was not done.
-                    \item Non-granular commits were used. 
-                \end{itemize}
-            \item Having no overview of the impact of a change on the rest of the module.
-	\end{itemize}
-
-	\medskip
+    \begin{columns}
+        \begin{column}[c]{0.2\textwidth}
+            \begin{center}
+            \includegraphics[width=\textwidth]{figures/betty.jpg}
+            \end{center}
+        \end{column}
+        \begin{column}[c]{0.8\textwidth}
+            Betty is CSE PhD student, working with a legacy research code.\\
+            Why is Betty so (rightfully) angry? 
+            \begin{itemize}
+                \item Betty inherited a \textbf{research software that is only partially tested}.
+                \item Betty inherited a \textbf{research software that isn't automatically tested}.
+                    \begin{itemize}
+                        \item Betty changes one part of the code and gets her model running, only to see 10 other things fail, after days of manually running tests. 
+                    \end{itemize}
+                \item Betty's software has \textbf{no documentation of the scientific workflow}. 
+                    \begin{itemize}
+                        \item Betty has no idea how to use existing scripts to run simulations and analyze results. 
+                    \end{itemize}
+                \item Betty's software has \textbf{disjoint versions - one for each problem} - that she just can't integrate. 
+                \item \textbf{Betty can't even find code versions used to generate results in the publications from her research group.} 
+            \end{itemize}
+        \end{column}
+    \end{columns}
 
 \end{frame}
-
-\begin{frame}{Similarity with other workflows / best practices}
-
-	\vfill
-	Our \emph{(subjective)} estimates* of similarity $1-5$ (higher is more similar), $-$: aspect not addressed.
-	\begin{center}
-		\scriptsize
-		\begin{tabular}{@{} *6l @{}}    \toprule
-				\emph{DOI} & \emph{Branching model} & \emph{TDD} & \emph{Cross-linking} & \emph{CI}  & (Meta)data standardization \\\midrule
-				 \href{https://doi.org/10.12688/f1000research.11407.1}{10.12688/f1000research.11407.1} 
-					 & -  & -  & -  & - & 1  \\ 
-				 \href{https://doi.org/10.3934/math.2016.3.261}{10.3934/math.2016.3.261} 
-					 & -  & -  & -  & - & 2  \\ 
-				 \href{https://doi.org/10.1371/journal.pbio.1001745}{10.1371/journal.pbio.1001745} 
-					 & 1  & 2  & -  & - & -  \\ 
-				 \href{https://doi.org/10.1371/journal.pcbi.1005510}{10.1371/journal.pcbi.1005510}
-					 & -  & -  & 3 & 1 & 3  \\ 
-				 \href{https://doi.org/10.1145/2723872.2723881}{10.1145/2723872.2723881}
-					 & 1  & -  & - & 1 & -  \\ 
-				 \href{https://dl.acm.org/doi/10.1145/3324989.3325719}{10.1145/3324989.3325719}
-					 & 1  & -  & - & 5 & -  \\ 
-				 \href{https://doi.org/10.1371/journal.pone.0230557}{10.1371/journal.pone.0230557}
-					 & 1  & -  & - & 1 & 4  \\ 
-				 \href{https://doi.org/10.1145/3219104.3219147}{10.1145/3219104.3219147} 
-					 & 1  & -  & -  & 4 & - \\\bottomrule
-				 \hline
-		\end{tabular}
-	\end{center}
-	
-	*\emph{The list may still be incomplete.}
-	
-\end{frame}
-
-%\begin{frame}{CSE software in the Collaborative Research Center 1194}
-
-    %\begin{itemize}
-        %\item OpenFOAM
-    %\end{itemize}
-
-%\end{frame}
-
