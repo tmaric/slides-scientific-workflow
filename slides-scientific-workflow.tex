@@ -104,6 +104,8 @@
 
 \usepackage{booktabs}
 \usepackage{fontawesome}
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{0.8\textwidth}
 
 \hypersetup{
   colorlinks,
@@ -205,111 +207,15 @@
 \maketitle
 
 \input{slides/introduction.tex}
-\input{slides/workflow-overview.tex}
-\input{slides/issue-tracking.tex}
-\input{slides/version-control.tex}
-\input{slides/test-driven-development.tex}
-\input{slides/cross-linking.tex}
+%\input{slides/workflow-overview.tex}
+%\input{slides/issue-tracking.tex}
+%\input{slides/version-control.tex}
+%\input{slides/test-driven-development.tex}
+%\input{slides/cross-linking.tex}
 \input{slides/continuous-integration-overview.tex}
 \input{slides/continuous-integration-hands-on.tex}
 
 
-%\begin{frame}{Cross-linking data, source code and reports/publications} 
-	
-	%\vfill
-	%\begin{itemize}
-		%\item Archive secondary data on a data repository (DOI). 
-		%\item Archive primary data on a data repository (DOI). 
-		%\item Create a git tag on the remote git repository. 
-		%\item Archive the source code, binaries and secondary data in a Singularity container (DOI). 
-		%\item Refer to result data DOIs, the git repo and the tag in the publication.
-		%\item Upload the publication to a repository (DOI, arXiv-ID).
-			%\begin{itemize}
-				%\item For tech reports and milestones, DOIs can be requested without publication.
-			%\end{itemize}
-		%\item Edit metadata and the git-tag description until everything is cross-linked.
-	%\end{itemize}
-
-%\end{frame}
-
-\begin{frame}{Similarity with other workflows / best practices}
-
-	\vfill
-	Our \emph{(subjective)} estimates* of similarity $1-5$ (higher is more similar), $-$: aspect not addressed.
-	\begin{center}
-		\scriptsize
-		\begin{tabular}{@{} *6l @{}}    \toprule
-				\emph{DOI} & \emph{Branching model} & \emph{TDD} & \emph{Cross-linking} & \emph{CI}  & (Meta)data standardization \\\midrule
-				 \href{https://doi.org/10.12688/f1000research.11407.1}{10.12688/f1000research.11407.1} 
-					 & -  & -  & -  & - & 1  \\ 
-				 \href{https://doi.org/10.3934/math.2016.3.261}{10.3934/math.2016.3.261} 
-					 & -  & -  & -  & - & 2  \\ 
-				 \href{https://doi.org/10.1371/journal.pbio.1001745}{10.1371/journal.pbio.1001745} 
-					 & 1  & 2  & -  & - & -  \\ 
-				 \href{https://doi.org/10.1371/journal.pcbi.1005510}{10.1371/journal.pcbi.1005510}
-					 & -  & -  & 3 & 1 & 3  \\ 
-				 \href{https://doi.org/10.1145/2723872.2723881}{10.1145/2723872.2723881}
-					 & 1  & -  & - & 1 & -  \\ 
-				 \href{https://dl.acm.org/doi/10.1145/3324989.3325719}{10.1145/3324989.3325719}
-					 & 1  & -  & - & 5 & -  \\ 
-				 \href{https://doi.org/10.1371/journal.pone.0230557}{10.1371/journal.pone.0230557}
-					 & 1  & -  & - & 1 & 4  \\ 
-				 \href{https://doi.org/10.1145/3219104.3219147}{10.1145/3219104.3219147} 
-					 & 1  & -  & -  & 4 & - \\\bottomrule
-				 \hline
-		\end{tabular}
-	\end{center}
-	
-	*\emph{The list may still be incomplete.}
-	
-\end{frame}
-
-\begin{frame}{Summary: the minimal workflow} 
-    \vfill
-
-    Minimal workflow
-    \begin{itemize}
-        \item Track the status of your project using the GitLab Kanban board.
-        \item Learn and apply the very basics of git, understand the concepts behind branching, merging, commits and working with remote repositories.   
-        \item Integrate the changes that worked, don't leave 30 branches open. 
-        \item Format the data using established (open-source) formats if possible, if not, at least do this for secondary data (diagrams and tables). 
-        \item Share your secondary data on a (TUdatalib) data repository. 
-        \item Periodically cross-link research data: publication/report, scripts/code, secondary and primary data. 
-    \end{itemize}
-
-\end{frame}
-
-%\begin{frame}{Lessons learned}
-	%\vfill
-        %\begin{itemize}
-            %\item Keeping the workflow as simple as possible is crucial for acceptance.
-            %\item Focusing on secondary data simplifies the workflow significantly.  
-            %\item For simulations that run $<24$ hours primary data can be recomputed easily. 
-            %\item Periodical cross-linking of research data is done quickly and it is very beneficial. 
-            %\item Personal responsibility is crucial at University research groups: who are the maintainers? 
-                %\begin{itemize}
-                    %\item What are the incentives for maintainers? 
-                %\end{itemize}
-            %\item Fixing the (parallel) I/O of legacy scientific codes requires a large amount of effort. 
-                %\begin{itemize}
-                    %\item It should be done outside of research projects. 
-                %\end{itemize}
-        %\end{itemize}
-%\end{frame}
-
-%\begin{frame}{Outlook}
-	%\vfill
-	%\begin{itemize}
-            %\item Performance CI jobs run on 64-core workstations: moving on to the HPC cluster. 
-            %\item Singularity GitLab executor? 
-            %\item Jupyter Hub for interactive analysis of problems in parameter variations?
-            %\item Automatic publishing and cross-linking of CI artifacts? 
-                %\begin{itemize}
-                    %\item Source code archive, Singularity container, secondary data. 
-                    %\item Data repository API must be used to modify metadata. 
-                %\end{itemize}
-	%\end{itemize}
-%\end{frame}
 
 \begin{frame}{Acknowledgements}
 
