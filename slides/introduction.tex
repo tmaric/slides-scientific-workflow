@@ -92,7 +92,7 @@
 
 
 \begin{frame}{Computational Science and Engineering software in\\university research groups}
-    \framesubtitle{Total chaos of inheriting scientific software (legacy scientific code)}
+    \framesubtitle{The chaos scientific legacy code}
         \vfill
 	
     \begin{columns}
@@ -102,7 +102,7 @@
             \end{center}
         \end{column}
         \begin{column}[c]{0.8\textwidth}
-            Betty is CSE PhD student, working with a legacy research code.\\
+            Betty is a CSE researcher, working with a legacy research code.\\
             Why is Betty so (rightfully) angry? 
             \begin{itemize}
                 \item Betty inherited a \textbf{research software that is only partially tested}.
@@ -112,12 +112,52 @@
                     \end{itemize}
                 \item Betty's software has \textbf{no documentation of the scientific workflow}. 
                     \begin{itemize}
-                        \item Betty has no idea how to use existing scripts to run simulations and analyze results. 
+                        \item Betty doesn't know how to use existing scripts to run simulations and analyze (reproduce) results. 
                     \end{itemize}
-                \item Betty's software has \textbf{disjoint versions - one for each problem} - that she just can't integrate. 
+                \item Betty's software has \textbf{disjoint (diverging) versions} - that she can't integrate. 
                 \item \textbf{Betty can't even find code versions used to generate results in the publications from her research group.} 
             \end{itemize}
         \end{column}
     \end{columns}
 
 \end{frame}
+
+\begin{frame}{Computational Science and Engineering software in\\university research groups}
+    \framesubtitle{The chaos of developing entirely new research software}
+    \vfill
+
+    \epigraph{"Après moi, le déluge" - "After me, the flood"}{\href{https://en.wikipedia.org/wiki/Apr\%C3\%A8s_moi,_le_d\%C3\%A9luge}{Louis XV of France}}
+
+    Research software generally does not matter, as long as papers are published (\faGraduationCap).
+    
+    \medskip
+
+    \textbf{Missed opportunities, even for individualists}
+    \begin{itemize}
+        \item \emph{Finding results} made easy by cross-linking code versions, data and publications. 
+        \item \emph{Faster extension / combination of existing ideas} if their respective versions are integrated. 
+        \item \emph{Faster comparison of results} with previous ideas automating verification / validation. 
+        \item \emph{Automatic reproducibility} of results using automated testing and version control. 
+        \item \emph{Faster onboarding} with documented scientific verification and validation workflows. 
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Computational Science and Engineering software in\\university research groups}
+    \framesubtitle{Continuous integration and cross-linking to the rescue}
+    \vfill
+
+    \textbf{Automated testing} (verification and validation), \textbf{version control}, and \textbf{cross-linking} reports, source code and research data increase Findability, Accessibility and Reproducibility (\href{ https://www.go-fair.org/fair-principles}{FAIR}) and \emph{speed up research.} 
+
+    \begin{itemize}
+
+        \item \textbf{Continuous Integration (CI) = automatic testing + version control.}
+
+        \item CSE research requires \textbf{scientific workflows}: initialize simulations, run parameter variations, agglomerate data, visualize, and check results.  
+        \item CI can be used to \textbf{automate and document scientific workflows}. 
+        \item CI ensures that the integration of new changes does not break existing functionality.
+        \item Once the changes are integrated, the publication, the source code and the data are published on pre-print and data repositories and \textbf{cross-linked} git tags and DOIs. 
+    \end{itemize}
+
+\end{frame}
+
