@@ -365,13 +365,15 @@ initialization_param_study:
 
 \end{frame}
 
-\begin{frame}{(Continuous) Integration of scientific software} 
+\begin{frame}[fragile]{(Continuous) Integration of scientific software} 
 \framesubtitle{Processing and visualizing tests}
 \vfill
 
     \vfill
 
-    \texttt{jupyter nbconvert notebook.ipynb --execute --to FORMAT}
+    \begin{minted}{bash}
+    jupyter nbconvert notebook.ipynb --execute --to FORMAT
+    \end{minted}
 
     \medskip
 
