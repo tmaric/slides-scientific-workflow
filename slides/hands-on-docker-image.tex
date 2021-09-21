@@ -1,3 +1,30 @@
+\section{Hands on}
+
+\begin{frame}{(Continuous) Integration of scientific software}
+    \framesubtitle{Hands on: overview}
+    \begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{block}{1. Repository preparation}
+            A minimal repository representing an examplary
+            "status quo".
+        \end{block}
+        \begin{block}{2. Setup a Gitlab runner}
+            Provide a machine for execution of tests.
+        \end{block}
+    \end{column}
+
+    \begin{column}{0.48\textwidth}
+        \begin{exampleblock}{3. Create a Docker image}
+            Configure a reproducibile testing environment.
+        \end{exampleblock}
+        \begin{block}{4. Define CI pipeline through a YAML file}
+            Define tests, how and when they are executed and what
+            results to store.
+        \end{block}
+    \end{column}
+    \end{columns}
+\end{frame}
+
 \begin{frame}{(Continuous) Integration of scientific software} 
     \framesubtitle{Hands on: creating a Docker image I} 
     \vfill
@@ -10,7 +37,7 @@
         \begin{column}[c]{0.5\textwidth}
 
             \begin{itemize}
-                \item \href{https://docs.docker.com/}{Docker} images are computing environments that contain everything needed to build the research software, run simulations and process results (\textbf{dependencies}). 
+                \item \href{https://docs.docker.com/}{Docker} images are computing environments that contain (\textbf{dependencies}) needed to build the research software, run simulations and process results. 
                 \item Sharing docker images removes the need to install the dependencies on different machines. 
                 \item The computing environment in a Docker image is usually based on an existing Linux distribution. 
                 \item The Docker image is built from a text file, that specifies installation steps for the dependencies, the so-called \textbf{Dockerfile}.
@@ -34,7 +61,7 @@ RUN apt-get update --fix-missing && \
     \end{minted}
 
     \begin{itemize}
-        \item We'll use Ubunt 20.04 (focal) as the base system.
+        \item We'll use Ubuntu 20.04 (focal) as the base system.
         \item Steps that are usually done manually (setting the timezone) are automated. 
     \end{itemize}
 
