@@ -1,39 +1,37 @@
 \section{Hands on}
 
-\begin{frame}{(Continuous) Integration of scientific software}
-    \framesubtitle{Hands on: overview}
-    \begin{columns}
-    \begin{column}{0.48\textwidth}
-        \begin{block}{1. Repository preparation}
-            A minimal repository representing an examplary
-            "status quo".
-        \end{block}
-        \begin{block}{2. Setup a Gitlab runner}
-            Provide a machine for execution of tests.
-        \end{block}
-    \end{column}
-
-    \begin{column}{0.48\textwidth}
-        \begin{exampleblock}{3. Create a Docker image}
-            Configure a reproducibile testing environment.
-        \end{exampleblock}
-        \begin{block}{4. Define CI pipeline through a YAML file}
-            Define tests, how and when they are executed and what
-            results to store.
-        \end{block}
-    \end{column}
-    \end{columns}
-\end{frame}
+%\begin{frame}{(Continuous) Integration of scientific software}
+%    \framesubtitle{Hands on: overview}
+%    \begin{columns}
+%    \begin{column}{0.48\textwidth}
+%        \begin{block}{1. Repository preparation}
+%            A minimal repository representing an examplary
+%            "status quo".
+%        \end{block}
+%        \begin{block}{2. Setup a Gitlab runner}
+%            Provide a machine for execution of tests.
+%        \end{block}
+%    \end{column}
+%
+%    \begin{column}{0.48\textwidth}
+%        \begin{exampleblock}{3. Create a Docker image}
+%            Configure a reproducibile testing environment.
+%        \end{exampleblock}
+%        \begin{block}{4. Define CI pipeline through a YAML file}
+%            Define tests, how and when they are executed and what
+%            results to store.
+%        \end{block}
+%    \end{column}
+%    \end{columns}
+%\end{frame}
 
 \begin{frame}{(Continuous) Integration of scientific software} 
     \framesubtitle{Hands on: creating a Docker image} 
 
     \vfill
 
-    \begin{minted}{bash}
-    ?> git checkout starting-point 
-    ?> git checkout -b feature/dockerfile
-    \end{minted}
+    \mint{bash}+?> git checkout starting-point+
+    \mint{bash}+?> git checkout -b feature/dockerfile+
 
 \end{frame}
 
