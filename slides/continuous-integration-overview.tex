@@ -520,8 +520,8 @@ initialization_param_study:
         \end{column}
         \begin{column}[c]{0.6\textwidth}
             \begin{itemize}
-                \item Instead of installing the research software only on the laptop/PC and the HPC cluster / workstation, we make install it in a virtual environment - \textbf{a Docker container}.
-                \item The Docker container then works on any machine that runs Docker. 
+                \item Instead of installing the research software only on the laptop/PC and the HPC cluster / workstation, we install it in a virtual environment - \textbf{a Docker image}.
+                \item The Docker image then works on any machine that runs Docker. 
                 \item Sharing research software becomes trivial - if our colleague wants to use our software, no installation (besides Docker) is required. 
             \end{itemize}
         \end{column}
@@ -576,29 +576,41 @@ initialization_param_study:
 \end{frame}
 
 \begin{frame}{(Continuous) Integration of scientific software} 
-    \framesubtitle{Summary}
+    \framesubtitle{Summary I}
 
 \begin{columns}
-    \begin{column}[c]{0.49\textwidth}
+    \begin{column}[c]{0.51\textwidth}
         \centering
         \includegraphics[width=\columnwidth]{figures/ZINF-CI-diagram-individual.pdf}
     \end{column}
     \begin{column}[c]{0.49\textwidth}
-        \begin{itemize} 
-            \item Use version-control for your software.  
-            \item Automate verification and validation (V\&V). 
-            \item Automate data processing and visualization.
-            \item Encode the V\&V into the CI pipeline using the YAML file.
-            \item Milestone reached: push changes to the remote repo. 
-            \item Tests pass: 
-                \begin{itemize} 
-                    \item add new tests to the CI pipeline, 
-                    \item merge feature into development branch. 
-                \end{itemize}
-            \item Cross-link the report/publication, data, and source code.
-        \end{itemize}
+        \footnotesize
+        \begin{algorithmic}[1]
+            \State Track changes using version-control.
+            \While{Milestone not reached}
+                \For{study in studies} \Comment On an HPC cluster.
+                    \State Automate data processing and visualization.
+                    \State Run study.
+                    \State Check results and apply code changes. 
+                \EndFor
+                \If{results are improved on the HPC cluster} 
+                    \State Push changes to the remote repository. 
+                    \If{CI pipeline tests pass}
+                        \State Milestone reached.
+                        \State Add new tests to the CI pipeline, 
+                        \State Merge feature into development branch. 
+                        \State Cross-link publication, data, and source code.
+                    \EndIf
+                \EndIf
+            \EndWhile
+        \end{algorithmic}
     \end{column}
 \end{columns}
+
+\end{frame}
+
+\begin{frame}{(Continuous) Integration of scientific software} 
+    \framesubtitle{Summary II}
 
 \end{frame}
 
