@@ -226,6 +226,13 @@
         \item A text (YAML) file is added to a repository, that specifies the tests (jobs) in a CI pipeline. 
 
         \item When the YAML file is pushed to an upstream git repository (GitLab), GitLab creates a CI pipeline from the YAML file. 
+
+        \item The CI pipeline needs a machine to run on - the GitLab runner. 
+        \item Either we install register and register our own GitLab runner, or a public one will be used.  
+
+        \item Shared runners on gitlab.com have limited capacity. 
+
+        \item Our Docker image must be publicly accessible for it to be used by a shared gitlab.com runner.
     \end{itemize}
 \end{frame}
 
@@ -534,7 +541,7 @@ initialization_param_study:
 \vfill
 
     \vfill
-    The GitLab CI requires a \textbf{runner}: a machine that runs the CI jobs.
+    The GitLab CI requires a \textbf{GitLab runner: a machine that runs the CI jobs.}
     \begin{enumerate}
         \item \textbf{Short few CPU-core tests}: work-PC \faGraduationCap.    
         \item \textbf{Short many-core tests}: obtain a workstation with a 64-Core CPU\footnote{Thanks to \href{https://www.sfb1194.tu-darmstadt.de/index.en.jsp}{CRC 1194 at TU Darmstadt.}}\faGraduationCap.
@@ -554,29 +561,29 @@ initialization_param_study:
 
 \end{frame}
 
+%\begin{frame}{(Continuous) Integration of scientific software} 
+    %\framesubtitle{A GitLab runner with a Docker executor and a local Docker image}
+
+    %\vfill 
+    %Build a Docker image for your software, and track the Dockerfile with the project.\\
+    %\medskip
+    %\href{https://gitlab.com/tmaric/fvc-reconstruct/-/tree/main/docker}{Example OpenFOAM Dockerfile} on \texttt{ubuntu:focal} with "system" open-mpi and scotch.
+
+    %\medskip
+    %On the testing machine
+    %\begin{itemize}
+        %\item Install Docker and GitLab runner and register the GitLab runner with a Docker executor.
+        %\item Configure the GitLab runner in \texttt{/etc/gitlab-runner/config.toml} to
+            %\begin{itemize}
+                %\item use a local Docker image, e.g., \texttt{image = "openfoam-v2012\_ubuntu-focal:latest"}, and
+                %\item never pull images \texttt{pull\_policy = never}.
+            %\end{itemize}
+    %\end{itemize}
+
+%\end{frame}
+
 \begin{frame}{(Continuous) Integration of scientific software} 
-    \framesubtitle{A GitLab runner with a Docker executor and a local Docker image}
-
-    \vfill 
-    Build a Docker image for your software, and track the Dockerfile with the project.\\
-    \medskip
-    \href{https://gitlab.com/tmaric/fvc-reconstruct/-/tree/main/docker}{Example OpenFOAM Dockerfile} on \texttt{ubuntu:focal} with "system" open-mpi and scotch.
-
-    \medskip
-    On the testing machine
-    \begin{itemize}
-        \item Install Docker and GitLab runner and register the GitLab runner with a Docker executor.
-        \item Configure the GitLab runner in \texttt{/etc/gitlab-runner/config.toml} to
-            \begin{itemize}
-                \item use a local Docker image, e.g., \texttt{image = "openfoam-v2012\_ubuntu-focal:latest"}, and
-                \item never pull images \texttt{pull\_policy = never}.
-            \end{itemize}
-    \end{itemize}
-
-\end{frame}
-
-\begin{frame}{(Continuous) Integration of scientific software} 
-    \framesubtitle{Summary I}
+    \framesubtitle{Summary}
 
 \begin{columns}
     \begin{column}[c]{0.51\textwidth}
@@ -606,11 +613,6 @@ initialization_param_study:
         \end{algorithmic}
     \end{column}
 \end{columns}
-
-\end{frame}
-
-\begin{frame}{(Continuous) Integration of scientific software} 
-    \framesubtitle{Summary II}
 
 \end{frame}
 

@@ -41,7 +41,7 @@ RUN apt-get update --fix-missing && \
 \end{frame}
 
 \begin{frame}[fragile]{(Continuous) Integration of scientific software} 
-    \framesubtitle{Hands on: creating a Docker image II} 
+    \framesubtitle{Hands on: creating a Docker image III} 
     \vfill
 
     Dependency installation 
@@ -80,7 +80,7 @@ RUN apt update && apt-get install --fix-missing -y \
 \end{frame}
 
 \begin{frame}[fragile]{(Continuous) Integration of scientific software} 
-    \framesubtitle{Hands on: creating a Docker image II} 
+    \framesubtitle{Hands on: creating a Docker image IV} 
     \vfill
 
     Software setup  
@@ -103,7 +103,7 @@ RUN update-alternatives --install \
 \end{frame}
 
 \begin{frame}[fragile]{(Continuous) Integration of scientific software} 
-    \framesubtitle{Hands on: creating a Docker image II} 
+    \framesubtitle{Hands on: creating a Docker image V} 
     \vfill
     \begin{columns}
         \begin{column}[c]{0.5\textwidth}
@@ -149,7 +149,7 @@ RUN update-alternatives --install \
 \end{frame}
 
 \begin{frame}[fragile]{(Continuous) Integration of scientific software} 
-    \framesubtitle{Hands on: creating a Docker image II} 
+    \framesubtitle{Hands on: creating a Docker image VI} 
     \vfill
 
     Building the image
@@ -169,7 +169,7 @@ RUN update-alternatives --install \
 \end{frame}
 
 \begin{frame}[fragile]{(Continuous) Integration of scientific software} 
-    \framesubtitle{Hands on: creating a Docker image II} 
+    \framesubtitle{Hands on: creating a Docker image VII} 
     \vfill
 
     Listing Docker images
@@ -189,7 +189,7 @@ minimal-cse-ci-dockerfile_ubuntu-focal latest 921233ec4b44 9 minutes ago 982MB
 \end{frame}
 
 \begin{frame}[fragile]{(Continuous) Integration of scientific software} 
-    \framesubtitle{Hands on: creating a Docker image II} 
+    \framesubtitle{Hands on: creating a Docker image VIII} 
     \vfill
 
     "\textbf{Spinning a container}" (running a Docker image) 
@@ -218,7 +218,7 @@ root@b2c14ee0fd58:~# pwd
 
 
 \begin{frame}[fragile]{(Continuous) Integration of scientific software} 
-    \framesubtitle{Hands on: creating a Docker image II} 
+    \framesubtitle{Hands on: creating a Docker image IX} 
     \vfill
 
     Working within the container : compiling the software
@@ -241,7 +241,7 @@ root@b2c14ee0fd58:~# pwd
 
 
 \begin{frame}[fragile]{(Continuous) Integration of scientific software} 
-    \framesubtitle{Hands on: creating a Docker image II} 
+    \framesubtitle{Hands on: creating a Docker image X} 
     \vfill
 
     Analyzing the data using Jupyter notebooks
@@ -259,7 +259,7 @@ root@b2c14ee0fd58:~# pwd
 \end{frame}
 
 \begin{frame}[fragile]{(Continuous) Integration of scientific software} 
-    \framesubtitle{Hands on: creating a Docker image II} 
+    \framesubtitle{Hands on: creating a Docker image XI} 
     \vfill
 
     Extracting the data from the container 
@@ -283,7 +283,7 @@ root@b2c14ee0fd58:~# pwd
 \end{frame}
 
 \begin{frame}[fragile]{(Continuous) Integration of scientific software} 
-    \framesubtitle{Hands on: creating a Docker image II} 
+    \framesubtitle{Hands on: creating a Docker image XII} 
     \vfill
 
     \begin{itemize}
@@ -318,8 +318,28 @@ docker load < container-archive.tar
 
 \end{frame}
 
+
+\begin{frame}[fragile]{(Continuous) Integration of scientific software} 
+    \framesubtitle{Hands on: creating a Docker image XIII} 
+    \vfill
+
+    \begin{itemize}
+        \item Usually, the Docker image "lives" locally on the test machine. 
+        \item However, it can also be shared publicly on Dockerhub, for example (don't do this now)
+
+            \begin{minted}{docker}
+                ?> docker login 
+                ?> docker tag name:tag username/name:tag
+                ?> docker push username/name:tag
+            \end{minted}
+        \item This image can now be used by everyone.
+
+    \end{itemize}
+
+\end{frame}
+
 \begin{frame}{(Continuous) Integration of scientific software} 
-    \framesubtitle{Hands on: creating a Docker image V} 
+    \framesubtitle{Hands on: creating a Docker image XIV} 
     \vfill
 
     \begin{columns}
