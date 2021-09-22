@@ -527,7 +527,7 @@ Organize your simulation studies.
 \end{frame}
 
 \begin{frame}{(Continuous Integration with result visualization)} 
-    \framesubtitle{Test evaluation}
+    \framesubtitle{Test evaluation I}
 
     \vfill
 
@@ -537,21 +537,46 @@ Organize your simulation studies.
             \includegraphics[width=0.6\textwidth]{figures/test-evaluation.png}
         \end{column}
         \begin{column}[c]{0.6\textwidth}
-            Very straightforward 
+            \textbf{Straightforward for easily quantifiable errors}
             \begin{itemize}
-                \item Python scripts test secondary data agglomerated by notebooks from simulation results.
-                \item \textbf{Examples:} 
-                    \begin{itemize}
-                        \item Is the order of convergence of an error norm $\ge 2.0$?
-                        \item Is is the difference between simulation and experiment data $\le 4\%$? 
-                    \end{itemize}
+                \item \textbf{Examples:} volume conservation, order of convergence, total wall clock time, weak scaling, ...
+                \item \textbf{Python scripts test secondary data} agglomerated by Jupyter notebooks from simulation results.
             \end{itemize}
         \end{column}
     \end{columns}
-
-
 \end{frame}
 
+\begin{frame}{(Continuous Integration with result visualization)} 
+    \framesubtitle{Test evaluation II}
+
+    \vfill
+
+    \begin{columns}
+        \begin{column}[c]{0.4\textwidth}
+            \begin{center}
+            \includegraphics[width=0.6\textwidth]{figures/researchteam-test-evaluation.png}\\
+            \textbf{or}\\
+            \includegraphics[width=0.6\textwidth]{figures/researcher-test-evaluation.png}
+            \end{center}
+        \end{column}
+        \begin{column}[c]{0.6\textwidth}
+            \textbf{Difficult for errors that cannot be quantified easily}
+            \begin{itemize}
+                \item \textbf{Examples:} 
+                    \begin{itemize}
+                        \item Is is the difference between simulation and experiment data $\le 4\%$? 
+                        \item How to quantify the difference for complex signals?
+                    \end{itemize}
+                \item \textbf{Option 1: Researchers evaluate the test results even if all CI jobs pass.}
+                    \begin{itemize}
+                        \item A simple and efficient solution \faGraduationCap.
+                    \end{itemize}
+                \item \textbf{Option 2: Use statistics to quantify the difference.}
+
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
 
 \begin{frame}{(Continuous) Integration of scientific software} 
     \framesubtitle{Docker (containerization)}
