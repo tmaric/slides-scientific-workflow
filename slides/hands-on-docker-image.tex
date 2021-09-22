@@ -3,6 +3,9 @@
 
     \vfill
 
+    In the \textbf{\texttt{minimal-cse-ci-examples}} repository
+
+
     \mint{bash}+?> git checkout starting-point+
     \mint{bash}+?> git checkout -b feature/dockerfile+
 
@@ -278,16 +281,16 @@ root@b2c14ee0fd58:~# pwd
         \item Find the ID of the container you're on 
             
             \begin{minted}{bash}
-            sudo docker ps 
+sudo docker ps 
             \end{minted}
 
         \item Copy the results from the container onto the local machine 
             \begin{minted}{bash}
-            mkdir container-data
-            sudo docker cp f2dff55edf7a:/root/minimal-cse-ci-examples \
-                container-data/
+mkdir container-data
+sudo docker cp f2dff55edf7a:/root/minimal-cse-ci-examples \
+    container-data/
             \end{minted}
-        \item Examine the data and Jupyter notebook in a browser.
+        \item Examine the data and the Jupyter notebook in a browser.
     \end{itemize}
 
 \end{frame}
