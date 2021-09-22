@@ -1,30 +1,3 @@
-\section{Hands on}
-
-%\begin{frame}{(Continuous) Integration of scientific software}
-%    \framesubtitle{Hands on: overview}
-%    \begin{columns}
-%    \begin{column}{0.48\textwidth}
-%        \begin{block}{1. Repository preparation}
-%            A minimal repository representing an examplary
-%            "status quo".
-%        \end{block}
-%        \begin{block}{2. Setup a Gitlab runner}
-%            Provide a machine for execution of tests.
-%        \end{block}
-%    \end{column}
-%
-%    \begin{column}{0.48\textwidth}
-%        \begin{exampleblock}{3. Create a Docker image}
-%            Configure a reproducibile testing environment.
-%        \end{exampleblock}
-%        \begin{block}{4. Define CI pipeline through a YAML file}
-%            Define tests, how and when they are executed and what
-%            results to store.
-%        \end{block}
-%    \end{column}
-%    \end{columns}
-%\end{frame}
-
 \begin{frame}{(Continuous) Integration of scientific software} 
     \framesubtitle{Hands on: creating a Docker image} 
 
@@ -232,7 +205,7 @@ minimal-cse-ci-dockerfile_ubuntu-focal latest 921233ec4b44 9 minutes ago 982MB
     "\textbf{Spinning a container}" (running a Docker image) 
 
     \begin{minted}{bash}
-?> docker run -it minimal-cse-ci-dockerfile_ubuntu-focal /bin/bash
+?> sudo docker run -it minimal-cse-ci-dockerfile_ubuntu-focal /bin/bash
 root@b2c14ee0fd58:/# ls
 bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  
 opt  proc  root  run  sbin  srv  sys  tmp  usr  var
@@ -245,7 +218,7 @@ root@b2c14ee0fd58:~# pwd
         \item The container behaves just like a "regular" Ubuntu. 
         \item \textbf{Jobs (test) commands for the Continuous Integration are checked/debugged inside a running container.}
             \begin{itemize}
-                \item Forgot to install a dependecy.
+                \item Forgot to install a dependency.
                 \item The research software does not compile with installed dependencies.
                 \item ...
             \end{itemize}

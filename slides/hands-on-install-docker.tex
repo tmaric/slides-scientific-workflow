@@ -1,4 +1,30 @@
 \begin{frame}{(Continuous) Integration of scientific software}
+    \framesubtitle{Hands on: overview}
+    \begin{columns}
+    \begin{column}{0.48\textwidth}
+        \begin{block}{1. Repository preparation}
+            A minimal repository representing an exemplary
+            "status quo".
+        \end{block}
+        \begin{exampleblock}{2. Create a Docker image}
+            Configure a reproducibile testing environment.
+        \end{exampleblock}
+    \end{column}
+
+    \begin{column}{0.48\textwidth}
+        \begin{block}{3. Define CI pipeline through a YAML file}
+            Define tests, how and when they are executed and what
+            results to store.
+        \end{block}
+        \begin{block}{4. Setup your own Gitlab runner}
+            Provide a machine for execution of tests.
+        \end{block}
+    \end{column}
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}{(Continuous) Integration of scientific software}
     \framesubtitle{Hands on: install Docker I}
     Specific steps depend on your Linux distribution (\href{https://docs.docker.com/engine/install/}{Docker documentation})\\
     Here for \href{https://docs.docker.com/engine/install/ubuntu/}{Ubuntu Focal}
