@@ -275,16 +275,15 @@ root@b2c14ee0fd58:~# pwd
     \framesubtitle{Hands on: creating a Docker image XI} 
     \vfill
 
-    Extracting the data from the container 
-
+    Extracting the data from the container:
     \begin{itemize}
-        \item Find the ID of the container you're on 
+        \item Find the ID of the container you're on (execute on your machine)
             
             \begin{minted}{bash}
 sudo docker ps 
             \end{minted}
 
-        \item Copy the results from the container onto the local machine 
+        \item Copy the results from the container onto the local machine (execute on your machine)
             \begin{minted}{bash}
 mkdir container-data
 sudo docker cp f2dff55edf7a:/root/minimal-cse-ci-examples \
@@ -292,6 +291,8 @@ sudo docker cp f2dff55edf7a:/root/minimal-cse-ci-examples \
             \end{minted}
         \item Examine the data and the Jupyter notebook in a browser.
     \end{itemize}
+
+    Note: the sequence f2dff55edf7a is system dependent ID, so it'll be different for you.
 
 \end{frame}
 
@@ -303,16 +304,18 @@ sudo docker cp f2dff55edf7a:/root/minimal-cse-ci-examples \
         \item Saving the container or an image as a tar file 
 
     \begin{minted}{bash}
-sudo docker commit b2c14ee0fd58 test:latest
+sudo docker commit f2dff55edf7a test:latest
     \end{minted}
 
-        \item View the newly create image with 'naeme:tag' using 
+        \item You can exit/close the container by pressing Ctrl+d.
+
+        \item View the newly create image with 'name:tag' using 
 
     \begin{minted}{bash}
 sudo docker image list 
 
 REPOSITORY TAG     IMAGE ID       CREATED              SIZE
-test       latest  c5b19ed5489a   About a minute ago   983MB
+test       latest  f2dff55edf7a   About a minute ago   983MB
     \end{minted}
 
     \item Save the image into a tar file 
@@ -346,6 +349,7 @@ docker load < container-archive.tar
                 ?> docker push username/name:tag
             \end{minted}
         \item This image can now be used by everyone.
+        \item Note: once you exit/stop a container all data/files created inside the container are discarded. 
 
     \end{itemize}
 

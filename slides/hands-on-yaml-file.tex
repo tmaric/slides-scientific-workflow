@@ -150,14 +150,18 @@ convert_notebooks:
     \vfill
 
     \begin{columns}
-        \begin{column}[c]{0.5\textwidth}
+        \begin{column}[c]{0.3\textwidth}
     \href{https://gitlab.com/tmaric/minimal-cse-ci-examples/-/blob/01-with-ci/.gitlab-ci.yml}{Final \textbf{.gitlab-ci.yml} file}. 
         \end{column}
-        \begin{column}[c]{0.5\textwidth}
+        \begin{column}[c]{0.7\textwidth}
             Lessons learned I
             \begin{itemize}
                 \item Defining artifacts path starts at \textbf{\texttt{your-project/}}.
-                \item YAML files require debugging - the only way to do this effectively is to commit changes and push them upstream.
+                \item YAML files require debugging:
+                    \begin{itemize}
+                        \item syntax: use GitLab's CI Lint tool 
+                        \item everything else: the only way to do this effectively is to commit changes and push them upstream.
+                    \end{itemize}
                 \item It is possible to partially debug locally using 
                     \begin{minted}[fontsize=\footnotesize]{bash}
 gitlab-runner exec docker job-name
@@ -174,10 +178,10 @@ gitlab-runner exec docker job-name
     \vfill
 
     \begin{columns}
-        \begin{column}[c]{0.5\textwidth}
+        \begin{column}[c]{0.3\textwidth}
     \href{https://gitlab.com/tmaric/minimal-cse-ci-examples/-/blob/01-with-ci/.gitlab-ci.yml}{Final \textbf{.gitlab-ci.yml} file}. 
         \end{column}
-        \begin{column}[c]{0.5\textwidth}
+        \begin{column}[c]{0.7\textwidth}
             Lessons learned II
             \begin{itemize}
                 \item Generally, and for the CI, scripts that reproduce data without requiring input for the users speed up work.
