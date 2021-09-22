@@ -47,7 +47,7 @@
                 \item Starting studies takes time. 
                 \item Analyzing results takes time. 
                 \item Often the results are not checked "live" as the study runs - \textbf{waste of research time and CPUh}. 
-                \item \textbf{Only the researcher knows the details} behind the initialization, running and post-processing scripts - \textbf{when this person leaves, with her/him leaves reproducibility.} 
+                \item \textbf{Only the researcher knows the details} behind the initialization, running and post-processing scripts - \textbf{when this person leaves, the reproducibility is gone.} 
                 \item A researcher may forget to run a study and believe all tests have passed.
             \end{itemize}
         \end{column}
@@ -153,7 +153,7 @@
                     \item The milestone has been reached, the version can be integrated.
                 \end{enumerate}
                 Works well manually when there aren't many previous verification/validation tests and their analysis is relatively simple.\\
-                \textbf{Are we sure we ran all the tests and everything was OK?}
+                \textbf{Are we sure that we ran all the tests and examined the results properly?}
                 
             \end{column}
         \end{columns}
@@ -172,9 +172,9 @@
             \end{column}
             \begin{column}[c]{0.5\textwidth}
                 \begin{itemize}
-                    \item Manual examination of all previous tests is prone to error - even if V\&V scripts do not require metadata. 
-                    \item Manual examination is not sustainable - students are leaving...
-                    \item Tests that are relevant for the research software can are added to \textbf{Continuous Integration (CI)}.  
+                    \item \textbf{Manual testing takes a lot of time}. 
+                    \item \textbf{Manual testing} of all previous tests \textbf{is prone to error} - even if V\&V scripts do not require metadata. 
+                    \item Relevant \textbf{V\&V tests are automated using Continuous Integration (CI)}.  
                     \begin{itemize}
                         \item Changes are pushed to the upstream version control repository.  
                         \item The remote repository starts the so-called \textbf{CI} test pipeline (a sequence of tests). 
@@ -223,16 +223,20 @@
     \vfill
 
     \begin{itemize}
-        \item A text (YAML) file is added to a repository, that specifies the tests (jobs) in a CI pipeline. 
+        \item A \textbf{text (YAML) file} is added to a repository, that \textbf{specifies the tests} (jobs) in a CI pipeline. 
 
-        \item When the YAML file is pushed to an upstream git repository (GitLab), GitLab creates a CI pipeline from the YAML file. 
+        \item When the YAML file is pushed to an upstream git repository (GitLab), \textbf{GitLab creates a CI pipeline from the YAML file}. 
 
-        \item The CI pipeline needs a machine to run on - the GitLab runner. 
-        \item Either we install register and register our own GitLab runner, or a public one will be used.  
-
-        \item Shared runners on gitlab.com have limited capacity. 
-
-        \item Our Docker image must be publicly accessible for it to be used by a shared gitlab.com runner.
+        \item The CI pipeline needs a \textbf{machine for running tests - the GitLab runner}. 
+            \begin{itemize}
+                \item Shared runners on gitlab.com have limited capacity. 
+                \item We can install and register our own GitLab runner.
+            \end{itemize}
+        \item \textbf{A Docker image encapsulates the computing environment}.
+            \begin{itemize}
+                \item \textbf{Virtualization/Containerisation} increases reproducibility and simplifies testing.
+            \end{itemize}
+        \item The Docker image must be publicly accessible for it to be used by a shared runner.
     \end{itemize}
 \end{frame}
 
@@ -258,11 +262,11 @@ initialization_param_study:
             \end{minted}
         \end{column}
         \begin{column}[c]{0.5\textwidth}
+            Example YAML file
             \begin{itemize}
-                \item The GitLab CI uses a YAML file for the configuration of the CI pipeline. 
-                \item The CI pipeline starts the right scripts in the right order: it documents the research workflow.
+                \item The \textbf{CI pipeline starts the right scripts in the right order}: it documents the research workflow.
                 \item A click of a button in a web browser reproduces results for any version of the research software.
-                \item Continuous \emph{integration} is used to \emph{integrate} only those changes that improve the software and don't break existing tests.
+                \item Continuous \textbf{integration} is used to \textbf{integrate} only those changes that improve the software and don't break existing tests.
             \end{itemize}
         \end{column}
     \end{columns}
@@ -284,14 +288,22 @@ initialization_param_study:
 \begin{frame}{(Continuous) Integration of scientific software} 
 \framesubtitle{CI in a nutshell IV}
     \vfill
+    
+    \begin{columns}
+        \begin{column}[c]{0.3\textwidth}
+            \includegraphics[width=\textwidth]{figures/artifacts.png}
+        \end{column}
+        \begin{column}[c]{0.7\textwidth}
+            \begin{itemize}
+                \item Files created within a CI job are gone when the job ends. 
+                \item GitLab uses \textbf{job artifacts} to pass on data from one job to the next. 
+                \item \textbf{Job artifacts can only be files stored in project's sub-folders.} 
+                \item Libraries and applications are passed to other jobs as artifacts. 
+                \item \textbf{Artifacts can be downloaded on the GitLab project website.}
+            \end{itemize}
+        \end{column}
+    \end{columns}
 
-    \begin{itemize}
-        \item Files created within a CI job are gone when the job ends. 
-        \item GitLab uses \textbf{job artifacts} to pass on data from one job to the next. 
-        \item \textbf{Job artifacts can only be files stored in project's sub-folders.} 
-        \item Libraries and applications are passed to other jobs as artifacts. 
-        \item \textbf{Artifacts can be downloaded on the GitLab project website.}
-    \end{itemize}
 
 \end{frame}
 
@@ -303,6 +315,8 @@ initialization_param_study:
     \includegraphics[width=0.9\textwidth]{figures/Cluster-Parameter-Study-Organization.pdf}
 \end{center}
 
+Organize your simulation studies.
+
 \end{frame}
 
 \begin{frame}{(Continuous) Integration of scientific software} 
@@ -312,7 +326,7 @@ initialization_param_study:
     \begin{itemize}
         \item Success of CSE methods is measured using verification and validation data. 
         \item Effective comparison with others (previous versions) hinges on data organization.
-        \item \textbf{Goal:} being able to identify the set of study parameters used in a simulation case.
+        \item \textbf{Goal:} easily \textbf{programmatically identify} parameters used in a simulation case.
     \end{itemize}
     
     \vfill
@@ -343,7 +357,7 @@ initialization_param_study:
     \begin{itemize}
         \item Associate simulation cases with their metadata. 
         \item \texttt{\{case000 : \{N\_CELLS: 32, MODEL : shear2D\}\}}
-        \item Store this information using a standard open-source format (\textbf{interoperability}).
+        \item Store this information using a standard open-source format (\textbf{Interoperability} in \href{https://www.go-fair.org/fair-principles/}{FAIR}).
     \end{itemize}
 
 \end{frame}
@@ -395,11 +409,29 @@ initialization_param_study:
 \framesubtitle{Secondary data I}
 \vfill
 
-    \begin{itemize}
-        \item Data used for diagrams and tables in a publication.
-        \item Data we compare our results with.
-        \item Primary data: complete simulation results / experimental measurements.
-    \end{itemize}
+    \begin{columns}
+        \begin{column}[c]{0.5\textwidth}
+            \begin{itemize}
+                \item Data used for diagrams and tables in a publication.
+                \item Data we compare our results with.
+                \item Data we waste time scanning from (sometimes our own) publications in CSE. 
+            \end{itemize}
+        \end{column}
+        \begin{column}[c]{0.5\textwidth}
+            \centering
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.7\textwidth]{figures/secondary-data.png}
+            \end{figure}
+            {\footnotesize
+                Imagine scanning this diagram. \\
+                \href{https://arxiv.org/abs/2109.01595}{Preprint: https://arxiv.org/abs/2109.01595}\\
+                \href{https://doi.org/10.48328/tudatalib-627}{Data: https://doi.org/10.48328/tudatalib-627}
+            }
+        \end{column}
+    \end{columns}
+
+
 
 \end{frame}
 
@@ -485,7 +517,7 @@ initialization_param_study:
     \vfill
 
     \begin{itemize}
-        \item \textbf{Research software has been improved} if the results have been improved \textbf{with respect to a previous or competing publication.}
+        \item \textbf{Research software is compared with existing publications.}
         \item A major milestone are improved results for a set of verification / validation tests.
         \item The cross-linking therefore revolves around the publication (pre-print, report, ...). 
         \item The cross-linking makes it possible to find the version of research software used to generate the results in the publication: repository link + git tag, repository snapshot, software image. 
@@ -499,15 +531,24 @@ initialization_param_study:
 
     \vfill
 
-    Very straightforward 
-    \begin{itemize}
-        \item Python scripts test secondary data agglomerated by notebooks from simulation results.
-        \item \textbf{Examples:} 
+    \begin{columns}
+        \begin{column}[c]{0.4\textwidth}
+            \centering
+            \includegraphics[width=0.6\textwidth]{figures/test-evaluation.png}
+        \end{column}
+        \begin{column}[c]{0.6\textwidth}
+            Very straightforward 
             \begin{itemize}
-                \item Is the order of convergence of an error norm $\ge 2.0$?
-                \item Is is the difference between simulation and experiment data $\le 4\%$? 
+                \item Python scripts test secondary data agglomerated by notebooks from simulation results.
+                \item \textbf{Examples:} 
+                    \begin{itemize}
+                        \item Is the order of convergence of an error norm $\ge 2.0$?
+                        \item Is is the difference between simulation and experiment data $\le 4\%$? 
+                    \end{itemize}
             \end{itemize}
-    \end{itemize}
+        \end{column}
+    \end{columns}
+
 
 \end{frame}
 
