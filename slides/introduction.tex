@@ -1,39 +1,41 @@
 \section{Introduction}
 
-\begin{frame}{Motivation: multiphase flow simulation methods}
-    \framesubtitle{Lagrangian / Eulerian Interface Advection (LEIA) methods}
+% Disabled for SC21
+%\begin{frame}{Motivation: multiphase flow simulation methods}
+%    \framesubtitle{Lagrangian / Eulerian Interface Advection (LEIA) methods}
+%
+%    \begin{center}
+%    \includegraphics[width=0.7\textwidth]{figures/interface.png}
+%    \end{center}
+%    \begin{itemize}
+%        \item Fluids that do not mix are separated by an interface $\Sigma(t)$ (surface in 3D). 
+%        \item Goal: track $\Sigma(t)$ as it moves in time $t$ and changes its topology. 
+%    \end{itemize}
+%
+%\end{frame}
+%
+%\begin{frame}{Motivation: multiphase flow simulation software}
+%    \framesubtitle{Lagrangian / Eulerian Interface Advection (LEIA) Methods}
+%
+%    \vfill
+%    LEIA methods
+%    \footnote{Marić, T., Marschall, H., \& Bothe, D. (2015). lentFoam–A hybrid Level Set/Front Tracking method on unstructured meshes. Computers \& Fluids, 113, 20-31.}\textsuperscript{,}
+%    \footnote{\footnotesize Tolle, T., Bothe, D., \& Marić, T. (2020). SAAMPLE: A Segregated Accuracy-driven Algorithm for Multiphase Pressure-Linked Equations. Computers \& Fluids, 200, 104450.}\textsuperscript{,}
+%    \footnote{Marić, T., Kothe, D. B., \& Bothe, D. (2020). Unstructured un-split geometrical Volume-of-Fluid methods–A review. Journal of Computational Physics, 420, 109695.}\textsuperscript{,}
+%    \footnote{\footnotesize Marić, T. (2021). Iterative Volume-of-Fluid interface positioning in general polyhedrons with Consecutive Cubic Spline interpolation. Journal of Computational Physics: X, 11, 100093.}\textsuperscript{,}
+%    \footnote{\footnotesize Tolle, T., Gründing, D., Bothe, D., \& Marić, T. (2021). Computing volume fractions and signed distances from triangulated surfaces immersed in unstructured meshes. arXiv preprint arXiv:2101.08511.}
+%    require \textbf{thorough testing}: 
+%    \begin{itemize}
+%        \item \textbf{Verification} cases: evolution of $\Sigma(t)$ and two-phase flows with exact solutions. 
+%
+%        \item \textbf{Validation} with respect to experiments.  
+%
+%        \item Testing \textbf{serial and parallel computational efficiency}. 
+%    \end{itemize}
+%
+%\end{frame}
 
-    \begin{center}
-    \includegraphics[width=0.7\textwidth]{figures/interface.png}
-    \end{center}
-    \begin{itemize}
-        \item Fluids that do not mix are separated by an interface $\Sigma(t)$ (surface in 3D). 
-        \item Goal: track $\Sigma(t)$ as it moves in time $t$ and changes its topology. 
-    \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Motivation: multiphase flow simulation software}
-    \framesubtitle{Lagrangian / Eulerian Interface Advection (LEIA) Methods}
-
-    \vfill
-    LEIA methods
-    \footnote{Marić, T., Marschall, H., \& Bothe, D. (2015). lentFoam–A hybrid Level Set/Front Tracking method on unstructured meshes. Computers \& Fluids, 113, 20-31.}\textsuperscript{,}
-    \footnote{\footnotesize Tolle, T., Bothe, D., \& Marić, T. (2020). SAAMPLE: A Segregated Accuracy-driven Algorithm for Multiphase Pressure-Linked Equations. Computers \& Fluids, 200, 104450.}\textsuperscript{,}
-    \footnote{Marić, T., Kothe, D. B., \& Bothe, D. (2020). Unstructured un-split geometrical Volume-of-Fluid methods–A review. Journal of Computational Physics, 420, 109695.}\textsuperscript{,}
-    \footnote{\footnotesize Marić, T. (2021). Iterative Volume-of-Fluid interface positioning in general polyhedrons with Consecutive Cubic Spline interpolation. Journal of Computational Physics: X, 11, 100093.}\textsuperscript{,}
-    \footnote{\footnotesize Tolle, T., Gründing, D., Bothe, D., \& Marić, T. (2021). Computing volume fractions and signed distances from triangulated surfaces immersed in unstructured meshes. arXiv preprint arXiv:2101.08511.}
-    require \textbf{thorough testing}: 
-    \begin{itemize}
-        \item \textbf{Verification} cases: evolution of $\Sigma(t)$ and two-phase flows with exact solutions. 
-
-        \item \textbf{Validation} with respect to experiments.  
-
-        \item Testing \textbf{serial and parallel computational efficiency}. 
-    \end{itemize}
-
-\end{frame}
-
+% Disabled for SC21
 %\begin{frame}{Motivation: Level Set / Front Tracking method\footnote{\footnotesize Marić, T., Marschall, H., \& Bothe, D. (2015). lentFoam–A hybrid Level Set/Front Tracking method on unstructured meshes. Computers \& Fluids, 113, 20-31.},\footnote{\footnotesize Tolle, T., Bothe, D., \& Marić, T. (2020). SAAMPLE: A Segregated Accuracy-driven Algorithm for Multiphase Pressure-Linked Equations. Computers \& Fluids, 200, 104450.}}
 
     %\vfill
@@ -123,26 +125,27 @@
 
 \end{frame}
 
-\begin{frame}{Computational Science and Engineering software in\\university research groups}
-    \framesubtitle{The chaos of developing entirely new research software}
-    \vfill
-
-    \epigraph{"Après moi, le déluge" - "After me, the flood"}{\href{https://en.wikipedia.org/wiki/Apr\%C3\%A8s_moi,_le_d\%C3\%A9luge}{Louis XV of France}}
-
-    Research software generally does not matter, as long as papers are published (\faGraduationCap).
-    
-    \medskip
-
-    \textbf{Missed opportunities}
-    \begin{itemize}
-        \item \emph{Finding results} made easy by cross-linking code versions, data and publications. 
-        \item \emph{Faster extension / combination of existing ideas} if their respective versions are integrated. 
-        \item \emph{Faster comparison of results} with previous ideas automating verification / validation. 
-        \item \emph{Automatic reproducibility} of results using automated testing and version control. 
-        \item \emph{Faster onboarding} with documented scientific verification and validation workflows. 
-    \end{itemize}
-
-\end{frame}
+% Disabled for SC21
+%\begin{frame}{Computational Science and Engineering software in\\university research groups}
+%    \framesubtitle{The chaos of developing entirely new research software}
+%    \vfill
+%
+%    \epigraph{"Après moi, le déluge" - "After me, the flood"}{\href{https://en.wikipedia.org/wiki/Apr\%C3\%A8s_moi,_le_d\%C3\%A9luge}{Louis XV of France}}
+%
+%    Research software generally does not matter, as long as papers are published (\faGraduationCap).
+%    
+%    \medskip
+%
+%    \textbf{Missed opportunities}
+%    \begin{itemize}
+%        \item \emph{Finding results} made easy by cross-linking code versions, data and publications. 
+%        \item \emph{Faster extension / combination of existing ideas} if their respective versions are integrated. 
+%        \item \emph{Faster comparison of results} with previous ideas automating verification / validation. 
+%        \item \emph{Automatic reproducibility} of results using automated testing and version control. 
+%        \item \emph{Faster onboarding} with documented scientific verification and validation workflows. 
+%    \end{itemize}
+%
+%\end{frame}
 
 \begin{frame}{Computational Science and Engineering software in\\university research groups}
     \framesubtitle{Continuous integration and cross-linking to the rescue}
