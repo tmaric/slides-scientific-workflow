@@ -36,7 +36,7 @@
     \framesubtitle{Hands on: creating a Docker image II} 
     \vfill
 
-    Base Docker image
+    In a file named 'minimal-cse-ci-dockerfile\_ubuntu-focal', write \\
 
     \begin{minted}{docker}
 FROM ubuntu:focal 
@@ -168,9 +168,10 @@ RUN update-alternatives --install \
     Building the image
 
 \begin{minted}{shell}
-?> sudo docker build . \
-    -f minimal-cse-ci-dockerfile\_ubuntu-focal \
-    -t minimal-cse-ci-dockerfile\_ubuntu-focal
+%?> sudo docker build . \
+    %-f minimal-cse-ci-dockerfile_ubuntu-focal \
+    %-t minimal-cse-ci-dockerfile_ubuntu-focal
+    sudo docker build . -f minimal-cse-ci-dockerfile_ubuntu-focal -t minimal-cse-ci:ubuntu-focal
 \end{minted}
 
 \begin{itemize}
@@ -327,7 +328,7 @@ sudo docker save test:latest -o container-archive.tar
     \item Load an image into Docker's registry to work with it 
 
     \begin{minted}{bash}
-docker load < container-archive.tar
+    sudo docker load -i container-archive.tar
     \end{minted}
 
 \end{itemize}

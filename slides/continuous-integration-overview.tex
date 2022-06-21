@@ -135,30 +135,30 @@
 \end{frame}
 
 % Disabled for SC21
-%\begin{frame}{Continuous Integration of Scientific Software}
-%    \framesubtitle{Automating the research workflow III} 
-%    \vfill
-%
-%        \begin{columns}
-%            \begin{column}[c]{0.5\textwidth}
-%                \begin{figure}
-%                    \centering
-%                    \includegraphics[width=\columnwidth]{figures/workflow-overview.png}
-%                \end{figure}
-%            \end{column}
-%            \begin{column}[c]{0.5\textwidth}
-%                \begin{enumerate} 
-%                    \item The \textbf{new} results are satisfactory. 
-%                    \item Similar automated workflows are executed for existing tests. 
-%                    \item All results are checked. 
-%                    \item The milestone has been reached, the version can be integrated.
-%                \end{enumerate}
-%                Works well manually when there aren't many previous verification/validation tests and their analysis is relatively simple.\\
-%                \textbf{Are we sure that we ran all the tests and examined the results properly?}
-%                
-%            \end{column}
-%        \end{columns}
-%\end{frame}
+\begin{frame}{Continuous Integration of Scientific Software}
+    \framesubtitle{Automating the research workflow III} 
+    \vfill
+
+        \begin{columns}
+            \begin{column}[c]{0.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=\columnwidth]{figures/workflow-overview.png}
+                \end{figure}
+            \end{column}
+            \begin{column}[c]{0.5\textwidth}
+                \begin{enumerate} 
+                    \item The \textbf{new} results are satisfactory. 
+                    \item Similar automated workflows are executed for existing tests. 
+                    \item All results are checked. 
+                    \item The milestone has been reached, the version can be integrated.
+                \end{enumerate}
+                Works well manually when there aren't many previous verification/validation tests and their analysis is relatively simple.\\
+                \textbf{Are we sure that we ran all the tests and examined the results properly?}
+                
+            \end{column}
+        \end{columns}
+\end{frame}
 
 \begin{frame}{Continuous Integration of Scientific Software}
     \framesubtitle{Automating the research workflow III} 
@@ -202,79 +202,79 @@
         \end{columns}
 \end{frame}
 
+%\begin{frame}{(Continuous) Integration of scientific software} 
+	%\framesubtitle{Schematic diagram for the individual workflow}
+        %\vfill
+
+        %\centering
+
+        %\begin{columns}
+            %\begin{column}[c]{0.55\textwidth}
+                %\includegraphics[width=\columnwidth]{figures/ZINF-CI-diagram-individual.pdf}
+            %\end{column}
+            %\begin{column}[c]{0.20\textwidth}
+                %Working alone. 
+            %\end{column}
+        %\end{columns}
+%\end{frame}
+
+% Disabled for SC21
 \begin{frame}{(Continuous) Integration of scientific software} 
-	\framesubtitle{Schematic diagram for the individual workflow}
-        \vfill
+\framesubtitle{CI in a nutshell I}
 
-        \centering
+    \vfill
 
-        \begin{columns}
-            \begin{column}[c]{0.55\textwidth}
-                \includegraphics[width=\columnwidth]{figures/ZINF-CI-diagram-individual.pdf}
-            \end{column}
-            \begin{column}[c]{0.20\textwidth}
-                Working alone. 
-            \end{column}
-        \end{columns}
+    \begin{itemize}
+        \item A \textbf{text (YAML) file} is added to a repository, that \textbf{specifies the tests} (jobs) in a CI pipeline. 
+
+        \item When the YAML file is pushed to an upstream git repository (GitLab), \textbf{GitLab creates a CI pipeline from the YAML file}. 
+
+        \item The CI pipeline needs a \textbf{machine for running tests - the GitLab runner}. 
+            \begin{itemize}
+                \item Shared runners on gitlab.com have limited capacity. 
+                \item We can install and register our own GitLab runner.
+            \end{itemize}
+        \item \textbf{A Docker image encapsulates the computing environment}.
+            \begin{itemize}
+                \item \textbf{Virtualization/Containerisation} increases reproducibility and simplifies testing.
+            \end{itemize}
+        \item The Docker image must be publicly accessible for it to be used by a shared runner.
+    \end{itemize}
 \end{frame}
 
 % Disabled for SC21
-%\begin{frame}{(Continuous) Integration of scientific software} 
-%\framesubtitle{CI in a nutshell I}
-%
-%    \vfill
-%
-%    \begin{itemize}
-%        \item A \textbf{text (YAML) file} is added to a repository, that \textbf{specifies the tests} (jobs) in a CI pipeline. 
-%
-%        \item When the YAML file is pushed to an upstream git repository (GitLab), \textbf{GitLab creates a CI pipeline from the YAML file}. 
-%
-%        \item The CI pipeline needs a \textbf{machine for running tests - the GitLab runner}. 
-%            \begin{itemize}
-%                \item Shared runners on gitlab.com have limited capacity. 
-%                \item We can install and register our own GitLab runner.
-%            \end{itemize}
-%        \item \textbf{A Docker image encapsulates the computing environment}.
-%            \begin{itemize}
-%                \item \textbf{Virtualization/Containerisation} increases reproducibility and simplifies testing.
-%            \end{itemize}
-%        \item The Docker image must be publicly accessible for it to be used by a shared runner.
-%    \end{itemize}
-%\end{frame}
+\begin{frame}[fragile]{(Continuous) Integration of scientific software} 
+\framesubtitle{CI in a nutshell II}
 
-% Disabled for SC21
-%\begin{frame}[fragile]{(Continuous) Integration of scientific software} 
-%\framesubtitle{CI in a nutshell II}
-%
-%    \begin{columns}
-%        \begin{column}[c]{0.5\textwidth}
-%            \begin{minted}[fontsize=\footnotesize]{yaml}
-%initialization_param_study:
-%  stage: running
-%  dependencies:
-%    - build_release
-%  script: 
-%    # run the parameter variation tests 
-%    - cd cases/initialization/3dinit
-%    - ./create_and_run_levelset.sh
-%    - ./reproduce_publication_results.sh
-%  artifacts:
-%    paths:
-%        - cases/initialization/3dinit/*.csv 
-%        - cases/initialization/3dinit/*.pdf 
-%            \end{minted}
-%        \end{column}
-%        \begin{column}[c]{0.5\textwidth}
-%            Example YAML file
-%            \begin{itemize}
-%                \item The \textbf{CI pipeline starts the right scripts in the right order}: it documents the research workflow.
-%                \item A click of a button in a web browser reproduces results for any version of the research software.
-%                \item Continuous \textbf{integration} is used to \textbf{integrate} only those changes that improve the software and don't break existing tests.
-%            \end{itemize}
-%        \end{column}
-%    \end{columns}
-%
-%\end{frame}
+    \begin{columns}
+        \begin{column}[c]{0.5\textwidth}
+            \begin{minted}[fontsize=\footnotesize]{yaml}
+initialization_param_study:
+  stage: running
+  dependencies:
+    - build_release
+  script: 
+    # run the parameter variation tests 
+    - cd cases/initialization/3dinit
+    - ./create_and_run_levelset.sh
+    - ./reproduce_publication_results.sh
+  artifacts:
+    paths:
+        - cases/initialization/3dinit/*.csv 
+        - cases/initialization/3dinit/*.pdf 
+            \end{minted}
+        \end{column}
+        \begin{column}[c]{0.5\textwidth}
+            Example YAML file
+            \begin{itemize}
+                \item The \textbf{CI pipeline starts the right scripts in the right order}: it documents the research workflow.
+                \item A click of a button in a web browser reproduces results for any version of the research software.
+                \item Continuous \textbf{integration} is used to \textbf{integrate} only those changes that improve the software and don't break existing tests.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
+\end{frame}
 
 \begin{frame}[fragile]{(Continuous) Integration of scientific software} 
 \framesubtitle{CI in a nutshell I}
@@ -311,45 +311,45 @@
 \end{frame}
 
 % Disabled for SC21
-%\begin{frame}{(Continuous) Integration of scientific software} 
-%\framesubtitle{Running tests I}
-%\vfill
-%
-%\begin{center}
-%    \includegraphics[width=0.9\textwidth]{figures/Cluster-Parameter-Study-Organization.pdf}
-%\end{center}
-%
-%Organize your simulation studies.
-%
-%\end{frame}
+\begin{frame}{(Continuous) Integration of scientific software} 
+\framesubtitle{Running tests I}
+\vfill
 
-% Disabled for SC21
-%\begin{frame}{(Continuous) Integration of scientific software} 
-%\framesubtitle{Running tests II}
-%\vfill
-%
-%    \begin{itemize}
-%        \item Success of CSE methods is measured using verification and validation data. 
-%        \item Effective comparison with others (previous versions) hinges on data organization.
-%        \item \textbf{Goal:} easily \textbf{programmatically identify} parameters used in a simulation case.
-%    \end{itemize}
-%    
-%    \vfill
-%    \begin{itemize}
-%        \item \textbf{Legacy code}: 
-%            \begin{itemize}
-%                \item use the existing folder structure and parameterization tools %\faGraduationCap,
-%                \item The mapping (case000) $\to$ (parameter vector) must be stored (YAML, ...)
-%            \end{itemize}
-%        \item \textbf{New code}: 
-%            \begin{enumerate}
-%                \item Simple folder and file structure %\faGraduationCap
-%                \item HDF5\footnote{\url{https://www.hdfgroup.org/solutions/hdf5}} or other open data format.
-%                \item Alternative to HDF5: \textbf{ExDir}\footnote{Dragly, Svenn-Arne, et al. "Experimental Directory Structure (Exdir): An alternative to HDF5 without introducing a new file format." Frontiers in neuroinformatics 12 (2018): 16.} 
-%            \end{enumerate}
-%    \end{itemize}
-%
-%\end{frame}
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{figures/Cluster-Parameter-Study-Organization.pdf}
+\end{center}
+
+Organize your simulation studies.
+
+\end{frame}
+
+%Disabled for SC21
+\begin{frame}{(Continuous) Integration of scientific software} 
+\framesubtitle{Running tests II}
+\vfill
+
+    \begin{itemize}
+        \item Success of CSE methods is measured using verification and validation data. 
+        \item Effective comparison with others (previous versions) hinges on data organization.
+        \item \textbf{Goal:} easily \textbf{programmatically identify} parameters used in a simulation case.
+    \end{itemize}
+    
+    \vfill
+    \begin{itemize}
+        \item \textbf{Legacy code}: 
+            \begin{itemize}
+                \item use the existing folder structure and parameterization tools %\faGraduationCap,
+                \item The mapping (case000) $\to$ (parameter vector) must be stored (YAML, ...)
+            \end{itemize}
+        \item \textbf{New code}: 
+            \begin{enumerate}
+                \item Simple folder and file structure %\faGraduationCap
+                \item HDF5\footnote{\url{https://www.hdfgroup.org/solutions/hdf5}} or other open data format.
+                \item Alternative to HDF5: \textbf{ExDir}\footnote{Dragly, Svenn-Arne, et al. "Experimental Directory Structure (Exdir): An alternative to HDF5 without introducing a new file format." Frontiers in neuroinformatics 12 (2018): 16.} 
+            \end{enumerate}
+    \end{itemize}
+
+\end{frame}
 
 \begin{frame}{(Continuous) Integration of scientific software} 
 \framesubtitle{Running tests I}
@@ -385,31 +385,31 @@
 \end{frame}
 
 % Disabled for SC21
-%\begin{frame}[fragile]{(Continuous) Integration of scientific software} 
-%\framesubtitle{Processing and visualizing tests}
-%\vfill
-%
-%    \vfill
-%
-%    \begin{minted}{bash}
-%    jupyter nbconvert notebook.ipynb --execute --to FORMAT
-%    \end{minted}
-%
-%    \medskip
-%
-%    \begin{itemize}
-%        \item Agglomerate secondary data into \texttt{pandas.MultiIndex} CSV files. 
-%        \item Run each jupyter notebook in the repository.
-%        \item Export secondary data and notebooks in different formats as artifacts.
-%        \item \textbf{Visualization} 
-%            \begin{itemize}
-%                \item Download the artifact and open the notebook \faGraduationCap.
-%                \item Notebooks contain information on failing tests. 
-%                \item Mapping "caseID" $\to$ "parameters" is crucial for re-starting failed parameter variations! 
-%            \end{itemize}
-%    \end{itemize}
-%
-%\end{frame}
+\begin{frame}[fragile]{(Continuous) Integration of scientific software} 
+\framesubtitle{Processing and visualizing tests}
+\vfill
+
+    \vfill
+
+    \begin{minted}{bash}
+    jupyter nbconvert notebook.ipynb --execute --to FORMAT
+    \end{minted}
+
+    \medskip
+
+    \begin{itemize}
+        \item Agglomerate secondary data into \texttt{pandas.MultiIndex} CSV files. 
+        \item Run each jupyter notebook in the repository.
+        \item Export secondary data and notebooks in different formats as artifacts.
+        \item \textbf{Visualization} 
+            \begin{itemize}
+                \item Download the artifact and open the notebook \faGraduationCap.
+                \item Notebooks contain information on failing tests. 
+                \item Mapping "caseID" $\to$ "parameters" is crucial for re-starting failed parameter variations! 
+            \end{itemize}
+    \end{itemize}
+
+\end{frame}
 
 \begin{frame}{(Continuous) Integration of scientific software} 
 \framesubtitle{Secondary data I}
@@ -519,73 +519,73 @@
 
 
 % Disabled for SC21
-%\begin{frame}[fragile]{Continuous Integration of Scientific Software}
-%    \framesubtitle{Cross-linking III} 
-%    \vfill
-%
-%    \begin{itemize}
-%        \item \textbf{Research software is compared with existing publications.}
-%        \item A major milestone are improved results for a set of verification / validation tests.
-%        \item The cross-linking therefore revolves around the publication (pre-print, report, ...). 
-%        \item The cross-linking makes it possible to find the version of research software used to generate the results in the publication: repository link + git tag, repository snapshot, software image. 
-%        \item Once the version is found, CI automatically reproduces all results from the publication with a click of a button.
-%    \end{itemize}
-%
-%\end{frame}
+\begin{frame}[fragile]{Continuous Integration of Scientific Software}
+    \framesubtitle{Cross-linking III} 
+    \vfill
+
+    \begin{itemize}
+        \item \textbf{Research software is compared with existing publications.}
+        \item A major milestone are improved results for a set of verification / validation tests.
+        \item The cross-linking therefore revolves around the publication (pre-print, report, ...). 
+        \item The cross-linking makes it possible to find the version of research software used to generate the results in the publication: repository link + git tag, repository snapshot, software image. 
+        \item Once the version is found, CI automatically reproduces all results from the publication with a click of a button.
+    \end{itemize}
+
+\end{frame}
 
 % Disabled for SC21
-%\begin{frame}{(Continuous Integration with result visualization)} 
-%    \framesubtitle{Test evaluation I}
-%
-%    \vfill
-%
-%    \begin{columns}
-%        \begin{column}[c]{0.4\textwidth}
-%            \centering
-%            \includegraphics[width=0.6\textwidth]{figures/test-evaluation.png}
-%        \end{column}
-%        \begin{column}[c]{0.6\textwidth}
-%            \textbf{Straightforward for easily quantifiable errors}
-%            \begin{itemize}
-%                \item \textbf{Examples:} volume conservation, order of convergence, total wall clock time, weak scaling, ...
-%                \item \textbf{Python scripts test secondary data} agglomerated by Jupyter notebooks from simulation results.
-%            \end{itemize}
-%        \end{column}
-%    \end{columns}
-%\end{frame}
+\begin{frame}{(Continuous Integration with result visualization)} 
+    \framesubtitle{Test evaluation I}
+
+    \vfill
+
+    \begin{columns}
+        \begin{column}[c]{0.4\textwidth}
+            \centering
+            \includegraphics[width=0.6\textwidth]{figures/test-evaluation.png}
+        \end{column}
+        \begin{column}[c]{0.6\textwidth}
+            \textbf{Straightforward for easily quantifiable errors}
+            \begin{itemize}
+                \item \textbf{Examples:} volume conservation, order of convergence, total wall clock time, weak scaling, ...
+                \item \textbf{Python scripts test secondary data} agglomerated by Jupyter notebooks from simulation results.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
 
 % Disabled for SC21
-%\begin{frame}{(Continuous Integration with result visualization)} 
-%    \framesubtitle{Test evaluation II}
-%
-%    \vfill
-%
-%    \begin{columns}
-%        \begin{column}[c]{0.4\textwidth}
-%            \begin{center}
-%            \includegraphics[width=0.6\textwidth]{figures/researchteam-test-evaluation.png}\\
-%            \textbf{or}\\
-%            \includegraphics[width=0.6\textwidth]{figures/researcher-test-evaluation.png}
-%            \end{center}
-%        \end{column}
-%        \begin{column}[c]{0.6\textwidth}
-%            \textbf{Difficult for errors that cannot be quantified easily}
-%            \begin{itemize}
-%                \item \textbf{Examples:} 
-%                    \begin{itemize}
-%                        \item Is is the difference between simulation and experiment data $\le 4\%$? 
-%                        \item How to quantify the difference for complex signals?
-%                    \end{itemize}
-%                \item \textbf{Option 1: Researchers evaluate the test results even if all CI jobs pass.}
-%                    \begin{itemize}
-%                        \item A simple and efficient solution \faGraduationCap.
-%                    \end{itemize}
-%                \item \textbf{Option 2: Use statistics to quantify the difference.}
-%
-%            \end{itemize}
-%        \end{column}
-%    \end{columns}
-%\end{frame}
+\begin{frame}{(Continuous Integration with result visualization)} 
+    \framesubtitle{Test evaluation II}
+
+    \vfill
+
+    \begin{columns}
+        \begin{column}[c]{0.4\textwidth}
+            \begin{center}
+            \includegraphics[width=0.6\textwidth]{figures/researchteam-test-evaluation.png}\\
+            \textbf{or}\\
+            \includegraphics[width=0.6\textwidth]{figures/researcher-test-evaluation.png}
+            \end{center}
+        \end{column}
+        \begin{column}[c]{0.6\textwidth}
+            \textbf{Difficult for errors that cannot be quantified easily}
+            \begin{itemize}
+                \item \textbf{Examples:} 
+                    \begin{itemize}
+                        \item Is is the difference between simulation and experiment data $\le 4\%$? 
+                        \item How to quantify the difference for complex signals?
+                    \end{itemize}
+                \item \textbf{Option 1: Researchers evaluate the test results even if all CI jobs pass.}
+                    \begin{itemize}
+                        \item A simple and efficient solution \faGraduationCap.
+                    \end{itemize}
+                \item \textbf{Option 2: Use statistics to quantify the difference.}
+
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
 
 \begin{frame}{(Continuous) Integration of scientific software} 
     \framesubtitle{Docker (containerization)}
@@ -614,30 +614,30 @@
 \end{frame}
 
 % Disabled for SC21
-%\begin{frame}{(Continuous) Integration of scientific software} 
-%\framesubtitle{Computing resources}
-%\vfill
-%
-%    \vfill
-%    The GitLab CI requires a \textbf{GitLab runner: a machine that runs the CI jobs.}
-%    \begin{enumerate}
-%        \item \textbf{Short few CPU-core tests}: work-PC \faGraduationCap.    
-%        \item \textbf{Short many-core tests}: obtain a workstation with a 64-Core CPU\footnote{Thanks to \href{https://www.sfb1194.tu-darmstadt.de/index.en.jsp}{CRC 1194 at TU Darmstadt.}}\faGraduationCap.
-%        \item \textbf{HPC tests}: combine 1. or 2. with an HPC cluster. 
-%    \end{enumerate}
-%
-%    An HPC cluster is relevant for production tests and performance measurements.
-%    \begin{itemize}
-%        \item This workflow uses coarse ("smoke") tests \faGraduationCap
-%            \begin{itemize}
-%                \item Unit tests run for 1. and 2.
-%                \item Convergence ensured for 1. and 2.
-%                \item Is efficient in parallel for 1. and 2. 
-%            \end{itemize}
-%        \item \textbf{Challenge}: Is it possible to combine 1., 2. and 3. and publish instead of perish \faGraduationCap?
-%    \end{itemize}
-%
-%\end{frame}
+\begin{frame}{(Continuous) Integration of scientific software} 
+\framesubtitle{Computing resources}
+\vfill
+
+    \vfill
+    The GitLab CI requires a \textbf{GitLab runner: a machine that runs the CI jobs.}
+    \begin{enumerate}
+        \item \textbf{Short few CPU-core tests}: work-PC \faGraduationCap.    
+        \item \textbf{Short many-core tests}: obtain a workstation with a 64-Core CPU\footnote{Thanks to \href{https://www.sfb1194.tu-darmstadt.de/index.en.jsp}{CRC 1194 at TU Darmstadt.}}\faGraduationCap.
+        \item \textbf{HPC tests}: combine 1. or 2. with an HPC cluster. 
+    \end{enumerate}
+
+    An HPC cluster is relevant for production tests and performance measurements.
+    \begin{itemize}
+        \item This workflow uses coarse ("smoke") tests \faGraduationCap
+            \begin{itemize}
+                \item Unit tests run for 1. and 2.
+                \item Convergence ensured for 1. and 2.
+                \item Is efficient in parallel for 1. and 2. 
+            \end{itemize}
+        \item \textbf{Challenge}: Is it possible to combine 1., 2. and 3. and publish instead of perish \faGraduationCap?
+    \end{itemize}
+
+\end{frame}
 
 %\begin{frame}{(Continuous) Integration of scientific software} 
     %\framesubtitle{A GitLab runner with a Docker executor and a local Docker image}
