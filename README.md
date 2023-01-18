@@ -1,6 +1,27 @@
 # Research Software Engineering Workflow for Computational Science and Engineering
 
-This repository contains slides about the Research Software Engineering Workflow for Computational Science and Engineering, published in 
+Please cite the slides as 
+
+```
+@misc{maric_tomislav_2021_5522820,
+  author       = {Maric, Tomislav and
+                  Tolle, Tobias and
+                  Lehr, Jan-Patrick and
+                  Pappagianidis, Ioannis and
+                  Bothe, Dieter and
+                  Bischof, Christian},
+  title        = {{"Continuous" Integration of Scientific Software 
+                   (in Computational Science and Engineering)}},
+  month        = sep,
+  year         = 2021,
+  publisher    = {Zenodo},
+  version      = {1.0},
+  doi          = {10.5281/zenodo.5522820},
+  url          = {https://doi.org/10.5281/zenodo.5522820}
+}
+```
+
+The slides describe parts of the Research Software Engineering Workflow for Computational Science and Engineering, published in 
 
 ```
 @article{cse_rse_workflow,
@@ -10,5 +31,3 @@ This repository contains slides about the Research Software Engineering Workflow
   year={2022}
 }
 ```
-
-Published under Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) License
