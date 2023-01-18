@@ -3,7 +3,7 @@
 Please cite the slides as 
 
 ```
-@misc{maric_tomislav_2021_5522820,
+@misc{rse_cse_workflow_slides,
   author       = {Maric, Tomislav and
                   Tolle, Tobias and
                   Lehr, Jan-Patrick and
