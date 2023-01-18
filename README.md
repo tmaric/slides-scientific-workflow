@@ -10,3 +10,5 @@ This repository contains slides about the Research Software Engineering Workflow
   year={2022}
 }
 ```
+
+Published under Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) License
