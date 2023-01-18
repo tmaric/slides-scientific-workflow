@@ -31,3 +31,5 @@ The slides describe parts of the Research Software Engineering Workflow for Comp
   year={2022}
 }
 ```
+
+## License:  Attribution 4.0 International (CC BY 4.0)
